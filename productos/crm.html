@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORGE CRM Express | Gestiona y multiplica tus ventas</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Tema Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+              950: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+            F
+          </div>
+          <span class="text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+            FORGE
+            <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold tracking-normal">CRM</span>
+          </span>
+        </a>
+
+        <span class="hidden sm:inline text-slate-700">|</span>
+
+        <!-- Back to Hub link -->
+        <a href="../index.html" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Hub Principal
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#modulos" class="hover:text-white transition-colors">Módulos</a>
+        <a href="#addons" class="hover:text-white transition-colors">Add-ons Pro</a>
+        <a href="#precios" class="hover:text-white transition-colors">Planes &amp; Precios</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="../demos/crm/index.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 transition-all">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Demo en vivo
+        </a>
+        <a href="#precios" class="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-md shadow-indigo-600/30">
+          Rentar Ahora
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <!-- Background Ambient Glow -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-indigo-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-indigo-400 mb-8 shadow-inner">
+          <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 text-[10px]">MÓDULO EXPRESS</span>
+          Solución Web Llave en Mano
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          FORGE CRM Express: <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-pink-400">
+            Gestiona y multiplica tus ventas
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          El sistema ágil diseñado para equipos comerciales que necesitan capturar prospectos, dar seguimiento riguroso y cerrar tratos sin lidiar con plataformas lentas o sobrecargadas.
+        </p>
+
+        <!-- Main CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="../demos/crm/index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-base shadow-xl shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95">
+            <svg class="w-5 h-5 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Probar Demo Interactiva
+          </a>
+          
+          <a href="#precios" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 font-semibold text-base transition-colors hover:border-slate-700">
+            Elegir Plan / Rentar
+          </a>
+        </div>
+
+        <!-- Metric highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-slate-900 text-left">
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Despliegue</p>
+            <p class="text-lg font-bold text-white mt-0.5">&lt; 5 Minutos</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Arquitectura</p>
+            <p class="text-lg font-bold text-white mt-0.5">FORGEPRIME</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Base de Datos</p>
+            <p class="text-lg font-bold text-white mt-0.5">PostgreSQL Supabase</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Flexibilidad</p>
+            <p class="text-lg font-bold text-white mt-0.5">100% Modular</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BASE MODULE SECTION ================= -->
+    <section id="modulos" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Arquitectura Esencial</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">El Núcleo Operativo: Módulo Base</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Todo lo necesario para organizar tu embudo de ventas comercial desde el primer día sin configuraciones complejas.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            
+            <div class="lg:col-span-2 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+                ✔ Incluido en todos los planes
+              </div>
+              
+              <h3 class="text-2xl sm:text-3xl font-bold text-white">
+                Control Total de Prospectos y Contactos
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Centraliza tus oportunidades comerciales en una libreta de contactos dinámica con clasificación por estado (Lead, Contactado, Negociación, Cliente Ganado), historial de notas y seguimiento de tareas pendientes.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Estados Lead / Cliente</h4>
+                    <p class="text-xs text-slate-400">Segmentación automática de prospectos fríos y clientes recurrentes.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Historial de Interacciones</h4>
+                    <p class="text-xs text-slate-400">Línea de tiempo con notas, llamadas, acuerdos y fechas clave.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Métricas en Vivo</h4>
+                    <p class="text-xs text-slate-400">Total de clientes, valor del mes y tareas urgentes en dashboard.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Búsqueda Rápida</h4>
+                    <p class="text-xs text-slate-400">Filtros instantáneos por nombre, correo, empresa y responsable.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Preview Card -->
+            <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-inner space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span class="text-xs font-bold text-slate-300">Vista Módulo Base</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Activo</span>
+              </div>
+              <div class="space-y-2.5">
+                <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <span class="text-xs text-slate-300">Carlos Mendoza</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">Cliente</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <span class="text-xs text-slate-300">Sofía Valenzuela</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 font-semibold">Lead</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <span class="text-xs text-slate-300">Roberto Garza</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">Cliente</span>
+                </div>
+              </div>
+              <a href="../demos/crm/index.html" class="block w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold text-center transition-colors">
+                Probar en Sandbox →
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ADD-ONS / PRO MODULES SECTION ================= -->
+    <section id="addons" class="py-16 lg:py-24 border-t border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Escala a tu medida</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Módulos Adicionales (Add-ons Pro)</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Habilita bloques funcionales adicionales según la etapa de crecimiento de tu empresa.
+          </p>
+        </div>
+
+        <!-- 4 Add-ons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- Add-on 1: Cotizaciones -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Add-on 01</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Cotizaciones</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Genera presupuestos comerciales elegantes con desglose de partidas, cálculo automático de impuestos, fotografías de producto y exportación a PDF para envío inmediato al cliente.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Plantillas en PDF con logo de tu empresa</li>
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Inserción de imágenes y fichas técnicas</li>
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Conversor de Cotización a Venta Ganada</li>
+              </ul>
+            </div>
+            
+            <div class="pt-2 text-xs font-semibold text-indigo-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 2: Automatizaciones -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Add-on 02</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Automatizaciones</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Conexión nativa con WhatsApp Web/API y Google Calendar. Envía mensajes de seguimiento predefinidos con un solo toque y agenda reuniones sincronizadas automáticamente.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Disparador de chat WhatsApp con texto personalizado</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Sincronización bidireccional con Google Calendar</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Recordatorios de llamadas y seguimiento pendiente</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-emerald-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 3: Kanban & Cargas Masivas -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-violet-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-violet-500/10 text-violet-400 border border-violet-500/20">Add-on 03</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Kanban &amp; Cargas Masivas</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Gestiona tus negocios arrastrando tarjetas a través de columnas ágiles de tu embudo. Importa y exporta bases de datos masivas en CSV o Excel en segundos.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-violet-400">✔</span> Tableros drag-and-drop interactivos</li>
+                <li class="flex items-center gap-2"><span class="text-violet-400">✔</span> Importador inteligente CSV/Excel sin duplicados</li>
+                <li class="flex items-center gap-2"><span class="text-violet-400">✔</span> Columnas personalizadas por tipo de producto</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-violet-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 4: Analytics -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Add-on 04</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Analytics</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Métricas avanzadas de productividad por ejecutivo de ventas, tasa de conversión por etapa del embudo, tiempos promedio de cierre y reportes ejecutivos.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Ranking de ventas por agente en tiempo real</li>
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Tasa de conversión y cuello de botella comercial</li>
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Informes exportables a PDF gerenciales</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-amber-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PRICING SECTION ================= -->
+    <section id="precios" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Planes Flexibles</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Compara y Renta tu Solución</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Sin plazos forzosos ni contratos de permanencia. Cancela o escala de plan cuando lo requieras.
+          </p>
+        </div>
+
+        <!-- Pricing Cards (2 Columns) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+          
+          <!-- Plan Base -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-700">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Base</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300">Esencial</span>
+              </div>
+              <p class="text-slate-400 text-xs sm:text-sm mb-6">
+                Ideal para profesionistas independientes o pequeños comercios que inician su digitalización.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <span class="text-3xl font-extrabold text-white">$12 USD</span>
+                <span class="text-slate-400 text-sm"> / mes</span>
+                <p class="text-xs text-slate-500 mt-1">Aprox. $220 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Módulo Base completo (Contactos, Leads/Clientes)
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Hasta 1,000 contactos almacenados
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Base de datos PostgreSQL en Supabase
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Despliegue en subdominio privado
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin módulo de cotizaciones con imágenes
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin automatizaciones de WhatsApp / Calendar
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Base ($12 USD/mes)')" class="w-full py-3.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all text-center">
+              Rentar Plan Base
+            </button>
+          </div>
+
+          <!-- Plan Pro Modular (Featured) -->
+          <div class="bg-gradient-to-b from-indigo-950/50 via-slate-900 to-slate-900 border-2 border-indigo-500 rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-indigo-500/10">
+            
+            <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-indigo-500 to-violet-500 text-white text-[11px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-full shadow-md">
+              Recomendado
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Pro Modular</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Todo Incluido</span>
+              </div>
+              <p class="text-slate-300 text-xs sm:text-sm mb-6">
+                Para negocios en crecimiento que necesitan automatización comercial, cotizaciones rápidas y métricas.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-indigo-500/30">
+                <span class="text-3xl font-extrabold text-white">$19 USD</span>
+                <span class="text-slate-300 text-sm"> / mes</span>
+                <p class="text-xs text-indigo-300 mt-1">Aprox. $350 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-200 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Base</strong> sin límites de contactos
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Cotizaciones</strong> con fotos y PDFs
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Automatizaciones</strong> (WhatsApp &amp; Calendar)
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Kanban &amp; Cargas Masivas</strong> (Excel/CSV)
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Analytics</strong> de agentes de venta
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Soporte técnico prioritario FORGE
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Pro Modular ($19 USD/mes)')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] text-center">
+              Rentar Plan Pro Modular
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= RENT / CHECKOUT MODAL ================= -->
+    <div id="modal-checkout" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-slate-900 border border-indigo-500/40 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+        
+        <button id="btn-close-checkout" aria-label="Cerrar modal" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 mx-auto flex items-center justify-center mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-white">Configurar Renta del Módulo</h3>
+          <p id="modal-selected-plan" class="text-indigo-400 text-xs font-semibold mt-1">Plan Pro Modular ($19 USD/mes)</p>
+
+          <form id="form-checkout" class="mt-6 space-y-3.5 text-left">
+            <div>
+              <label for="client-name" class="block text-xs font-medium text-slate-300 mb-1">Nombre o Empresa</label>
+              <input type="text" id="client-name" required placeholder="Ej: Mi Negocio S.A." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+              <label for="client-email" class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico</label>
+              <input type="email" id="client-email" required placeholder="contacto@minegocio.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition-all mt-4">
+              Continuar al Aprovisionamiento →
+            </button>
+          </form>
+
+          <p class="text-[11px] text-slate-500 mt-3">Infraestructura FORGEPRIME con base de datos privada.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+            F
+          </div>
+          <div>
+            <span class="font-bold text-white text-base">FORGE Hub</span>
+            <p class="text-xs text-slate-500">Soluciones Web Modulares Express</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+          <a href="../index.html" class="hover:text-white transition-colors">Hub Principal</a>
+          <a href="../demos/crm/index.html" class="hover:text-white transition-colors">Demo CRM Express</a>
+          <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+          <a href="#addons" class="hover:text-white transition-colors">Add-ons</a>
+          <a href="#precios" class="hover:text-white transition-colors">Precios</a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-900 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 FORGE. Todos los derechos reservados.</p>
+        <p>Construido bajo estándar FORGEPRIME (Vanilla JS, Netlify Functions &amp; Supabase).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const modalCheckout = document.getElementById('modal-checkout');
+    const btnCloseCheckout = document.getElementById('btn-close-checkout');
+    const modalSelectedPlan = document.getElementById('modal-selected-plan');
+    const formCheckout = document.getElementById('form-checkout');
+
+    function handlePlanSelection(planName) {
+      modalSelectedPlan.textContent = `Seleccionado: ${planName}`;
+      modalCheckout.classList.remove('hidden');
+      modalCheckout.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      modalCheckout.classList.add('hidden');
+      modalCheckout.classList.remove('flex');
+    }
+
+    btnCloseCheckout.addEventListener('click', closeCheckoutModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalCheckout) {
+        closeCheckoutModal();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalCheckout.classList.contains('hidden')) {
+        closeCheckoutModal();
+      }
+    });
+
+    formCheckout.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value;
+      const email = document.getElementById('client-email').value;
+      
+      closeCheckoutModal();
+      alert(`¡Solicitud recibida con éxito!\n\nCliente: ${name}\nCorreo: ${email}\n\nEn la siguiente etapa, este formulario conectará con Netlify Functions y Supabase para el aprovisionamiento instantáneo.`);
+    });
+  </script>
+
+</body>
+</html>
