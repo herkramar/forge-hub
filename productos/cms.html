@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORGE Site Express | Tu sitio web, catálogo y noticias administrable en minutos</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Tema Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#faf5ff',
+              100: '#f3e8ff',
+              500: '#a855f7',
+              600: '#9333ea',
+              700: '#7e22ce',
+              900: '#581c87',
+              950: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-purple-500 selection:text-white">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-violet-600 to-indigo-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform duration-200">
+            F
+          </div>
+          <span class="text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+            FORGE
+            <span class="text-xs px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-semibold tracking-normal">SITE</span>
+          </span>
+        </a>
+
+        <span class="hidden sm:inline text-slate-700">|</span>
+
+        <!-- Back to Hub link -->
+        <a href="../index.html" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Hub Principal
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+        <a href="#addons" class="hover:text-white transition-colors">Add-ons Pro</a>
+        <a href="#precios" class="hover:text-white transition-colors">Planes &amp; Precios</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="../demos/cms/index.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 transition-all">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Demo en Vivo
+        </a>
+        <a href="#precios" class="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-purple-600 hover:bg-purple-500 text-white transition-all shadow-md shadow-purple-600/30">
+          Rentar Ahora
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <!-- Background Ambient Glow -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-purple-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-purple-400 mb-8 shadow-inner">
+          <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px]">CMS &amp; SITIO EXPRESS</span>
+          Presencia Digital Administrable
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          FORGE Site Express: <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400">
+            Tu sitio web, catálogo y noticias administrable en minutos
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          Diseñado para empresas, agencias y profesionistas que buscan una presencia de marca corporativa, captar clientes calificados mediante formularios dinámicos y publicar contenido sin escribir una sola línea de código.
+        </p>
+
+        <!-- Main CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="../demos/cms/index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-base shadow-xl shadow-purple-600/30 transition-all hover:scale-105 active:scale-95">
+            <svg class="w-5 h-5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Probar Demo Interactiva
+          </a>
+          
+          <a href="#precios" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 font-semibold text-base transition-colors hover:border-slate-700">
+            Elegir Plan / Rentar
+          </a>
+        </div>
+
+        <!-- Metric highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-slate-900 text-left">
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Carga Google PageSpeed</p>
+            <p class="text-lg font-bold text-white mt-0.5">99/100</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Panel CMS</p>
+            <p class="text-lg font-bold text-white mt-0.5">100% No-Code</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Base de Datos</p>
+            <p class="text-lg font-bold text-white mt-0.5">Supabase PostgreSQL</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Hosting</p>
+            <p class="text-lg font-bold text-emerald-400 mt-0.5">Costo $0 Netlify</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BASE MODULE SECTION ================= -->
+    <section id="modulos" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-purple-400 font-semibold text-xs tracking-wider uppercase">Fundación Sólida</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">El Núcleo Institucional: Módulo Base</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Todo lo necesario para proyectar autoridad, exhibir tu catálogo de paquetes y canalizar clientes potenciales.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-purple-950/40 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            
+            <div class="lg:col-span-2 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+                ✔ Incluido en todos los planes
+              </div>
+              
+              <h3 class="text-2xl sm:text-3xl font-bold text-white">
+                Landing Page Corporativa, Paquetes &amp; Captación de Leads
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Estructura de una sola página enfocada en la conversión: propuesta de valor contundente, catálogo dinámico de servicios con desglose de beneficios, sección de testimonios y formulario inteligente de captación de prospectos directo a tu correo o WhatsApp.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Landing Page de Alto Rendimiento</h4>
+                    <p class="text-xs text-slate-400">Diseño responsive optimizado para smartphones, tablets y pantallas de escritorio.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Catálogo de Servicios y Paquetes</h4>
+                    <p class="text-xs text-slate-400">Tarjetas dinámicas con características, llamados a la acción y precios claros.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Formulario de Captación de Leads</h4>
+                    <p class="text-xs text-slate-400">Recepción organizada de prospectos con validación inmediata de campos.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Botón Flotante a WhatsApp</h4>
+                    <p class="text-xs text-slate-400">Enlace directo para atención personalizada y resolución de dudas en 1 clic.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Preview Card -->
+            <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-inner space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span class="text-xs font-bold text-slate-300">Vista Módulo Base</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono">En Línea</span>
+              </div>
+              
+              <div class="space-y-2.5">
+                <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                  <div class="w-full h-2 rounded bg-purple-500/40 mb-2"></div>
+                  <div class="w-2/3 h-2 rounded bg-slate-700"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800 text-center">
+                    <p class="text-[10px] text-slate-400">Paquete Básico</p>
+                    <p class="text-xs font-bold text-white">$99 USD</p>
+                  </div>
+                  <div class="p-2 rounded bg-slate-900 border border-slate-800 text-center">
+                    <p class="text-[10px] text-slate-400">Paquete Pro</p>
+                    <p class="text-xs font-bold text-purple-400">$199 USD</p>
+                  </div>
+                </div>
+                <div class="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
+                  <span class="text-[11px] text-emerald-400">Nuevo Lead: Laura G.</span>
+                  <span class="text-[10px] text-slate-400">Hace 3m</span>
+                </div>
+              </div>
+
+              <a href="../demos/cms/index.html" class="block w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold text-center transition-colors">
+                Explorar Demo en Vivo →
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ADD-ONS / PRO MODULES SECTION ================= -->
+    <section id="addons" class="py-16 lg:py-24 border-t border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-purple-400 font-semibold text-xs tracking-wider uppercase">Crecimiento Sin Límites</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Módulos Adicionales (Add-ons Pro)</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Habilita herramientas de publicación de contenidos, cotizadores interactivos y galerías de proyectos.
+          </p>
+        </div>
+
+        <!-- 4 Add-ons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- Add-on 1: Blog & Novedades -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-purple-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Add-on 01</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Blog &amp; Novedades</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Publica artículos ilimitados, notas de prensa, casos de éxito o comunicados institucionales con editor de texto enriquecido e imágenes destacadas.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-purple-400">✔</span> Categorías, etiquetas y tiempo estimado de lectura</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✔</span> Botones para compartir en redes sociales de 1 clic</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✔</span> Panel de administración web para redactar sin código</li>
+              </ul>
+            </div>
+            
+            <div class="pt-2 text-xs font-semibold text-purple-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 2: Cotizador en Línea -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-violet-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-violet-500/10 text-violet-400 border border-violet-500/20">Add-on 02</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Cotizador en Línea</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Calculadora dinámica de presupuesto donde los clientes seleccionan variables (horas, metros, personas, complementos) y obtienen un estimado instantáneo antes de contactar.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-violet-400">✔</span> Fórmulas configurables por paquete o servicio</li>
+                <li class="flex items-center gap-2"><span class="text-violet-400">✔</span> Envío del desglose detallado a WhatsApp del cliente</li>
+                <li class="flex items-center gap-2"><span class="text-violet-400">✔</span> Filtro automático de prospectos con intención real de compra</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-violet-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 3: Dominio Personalizado & SEO -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Add-on 03</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Dominio Personalizado &amp; SEO</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Conecta tu propio dominio (ej: www.tuempresa.com) con certificado de seguridad SSL automático y configuración avanzada de metadatos para posicionar en Google.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Conexión DNS en Netlify con CDN global de ultra velocidad</li>
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Open Graph para previsualizaciones atractivas en WhatsApp y redes</li>
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Sitemap XML y robots.txt generados automáticamente</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-indigo-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 4: Galería / Portafolio de Proyectos -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-pink-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-pink-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20">Add-on 04</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Galería / Portafolio</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Showcase visual de proyectos realizados, catálogo de renta o galería de obras con visor lightbox en alta resolución y filtros por categoría de trabajo.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Visor de pantalla completa y carruseles táctiles</li>
+                <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Carga progresiva y optimización WebP para no perder velocidad</li>
+                <li class="flex items-center gap-2"><span class="text-pink-400">✔</span> Ficha individual con descripción técnica y testimonios</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-pink-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PRICING SECTION ================= -->
+    <section id="precios" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-purple-400 font-semibold text-xs tracking-wider uppercase">Inversión Inteligente</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Planes y Precios Transparentes</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Sin plazos forzosos ni comisiones ocultas. Renta mensual con infraestructura de hosting y base de datos incluida.
+          </p>
+        </div>
+
+        <!-- Pricing Cards (2 Columns) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+          
+          <!-- Plan Base -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-700">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Base Site</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300">Esencial</span>
+              </div>
+              <p class="text-slate-400 text-xs sm:text-sm mb-6">
+                Perfecto para profesionistas o marcas que necesitan una vitrina profesional y captar prospectos.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <span class="text-3xl font-extrabold text-white">$10 USD</span>
+                <span class="text-slate-400 text-sm"> / mes</span>
+                <p class="text-xs text-slate-500 mt-1">Aprox. $185 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Landing Page profesional de 1 página
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Catálogo de hasta 6 servicios o paquetes
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Formulario de captación de leads conectado a correo
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Despliegue en subdominio Netlify de alta velocidad
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin módulo de Blog ni noticias ilimitadas
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin cotizador interactivo de presupuesto
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Base Site ($10 USD/mes)')" class="w-full py-3.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all text-center">
+              Rentar Plan Base
+            </button>
+          </div>
+
+          <!-- Plan Pro Modular (Featured) -->
+          <div class="bg-gradient-to-b from-purple-950/50 via-slate-900 to-slate-900 border-2 border-purple-500 rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-purple-500/10">
+            
+            <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-purple-500 via-violet-500 to-indigo-500 text-white text-[11px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-full shadow-md">
+              Recomendado
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Pro Modular</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">Todo Incluido</span>
+              </div>
+              <p class="text-slate-300 text-xs sm:text-sm mb-6">
+                Para empresas y agencias que necesitan blog, cotizador en vivo, galería de trabajos y dominio propio.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-purple-500/30">
+                <span class="text-3xl font-extrabold text-white">$19 USD</span>
+                <span class="text-slate-300 text-sm"> / mes</span>
+                <p class="text-xs text-purple-300 mt-1">Aprox. $350 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-200 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Base</strong> con servicios ilimitados
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Blog &amp; Novedades</strong> administrable
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Cotizador en Línea</strong> configurable
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Dominio Propio &amp; SEO</strong> (.com)
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Galería / Portafolio</strong> con lightbox
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Panel CMS en Supabase con soporte prioritario
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Pro Modular Site ($19 USD/mes)')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] text-center">
+              Rentar Plan Pro Modular
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= RENT / CHECKOUT MODAL ================= -->
+    <div id="modal-checkout" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-slate-900 border border-purple-500/40 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+        
+        <button id="btn-close-checkout" aria-label="Cerrar modal" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-purple-600/20 text-purple-400 mx-auto flex items-center justify-center mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-white">Configurar Renta de Tu Sitio Web</h3>
+          <p id="modal-selected-plan" class="text-purple-400 text-xs font-semibold mt-1">Plan Pro Modular Site ($19 USD/mes)</p>
+
+          <form id="form-checkout" class="mt-6 space-y-3.5 text-left">
+            <div>
+              <label for="client-name" class="block text-xs font-medium text-slate-300 mb-1">Nombre o Marca</label>
+              <input type="text" id="client-name" required placeholder="Ej: Consultora Nova" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500">
+            </div>
+
+            <div>
+              <label for="client-email" class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico</label>
+              <input type="email" id="client-email" required placeholder="contacto@consultoranova.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500">
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-600/30 transition-all mt-4">
+              Continuar al Aprovisionamiento →
+            </button>
+          </form>
+
+          <p class="text-[11px] text-slate-500 mt-3">Infraestructura FORGEPRIME con base de datos privada en Supabase.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-white font-bold text-sm">
+            F
+          </div>
+          <div>
+            <span class="font-bold text-white text-base">FORGE Hub</span>
+            <p class="text-xs text-slate-500">Soluciones Web Modulares Express</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+          <a href="../index.html" class="hover:text-white transition-colors">Hub Principal</a>
+          <a href="../demos/cms/index.html" class="hover:text-white transition-colors">Demo Site Express</a>
+          <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+          <a href="#addons" class="hover:text-white transition-colors">Add-ons</a>
+          <a href="#precios" class="hover:text-white transition-colors">Precios</a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-900 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 FORGE. Todos los derechos reservados.</p>
+        <p>Construido bajo estándar FORGEPRIME (Vanilla JS, Netlify Functions &amp; Supabase).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const modalCheckout = document.getElementById('modal-checkout');
+    const btnCloseCheckout = document.getElementById('btn-close-checkout');
+    const modalSelectedPlan = document.getElementById('modal-selected-plan');
+    const formCheckout = document.getElementById('form-checkout');
+
+    function handlePlanSelection(planName) {
+      modalSelectedPlan.textContent = `Seleccionado: ${planName}`;
+      modalCheckout.classList.remove('hidden');
+      modalCheckout.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      modalCheckout.classList.add('hidden');
+      modalCheckout.classList.remove('flex');
+    }
+
+    btnCloseCheckout.addEventListener('click', closeCheckoutModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalCheckout) {
+        closeCheckoutModal();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalCheckout.classList.contains('hidden')) {
+        closeCheckoutModal();
+      }
+    });
+
+    formCheckout.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value;
+      const email = document.getElementById('client-email').value;
+      
+      closeCheckoutModal();
+      alert(`¡Solicitud recibida con éxito!\n\nMarca/Negocio: ${name}\nCorreo: ${email}\n\nEn la siguiente etapa, este formulario conectará con Netlify Functions y Supabase para el aprovisionamiento instantáneo de tu sitio.`);
+    });
+  </script>
+
+</body>
+</html>

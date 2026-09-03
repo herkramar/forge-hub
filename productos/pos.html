@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORGE POS Express | Tu caja registradora inteligente para cobro en segundos</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Tema Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+              950: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+            F
+          </div>
+          <span class="text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+            FORGE
+            <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold tracking-normal">POS</span>
+          </span>
+        </a>
+
+        <span class="hidden sm:inline text-slate-700">|</span>
+
+        <!-- Back to Hub link -->
+        <a href="../index.html" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Hub Principal
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+        <a href="#addons" class="hover:text-white transition-colors">Add-ons Pro</a>
+        <a href="#precios" class="hover:text-white transition-colors">Planes &amp; Precios</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="../demos/pos/index.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 transition-all">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Terminal en Vivo
+        </a>
+        <a href="#precios" class="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-md shadow-indigo-600/30">
+          Rentar Ahora
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <!-- Background Ambient Glow -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-indigo-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-indigo-400 mb-8 shadow-inner">
+          <span class="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 text-[10px]">PUNTO DE VENTA EXPRESS</span>
+          Agilidad Táctil en Mostrador
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          FORGE POS Express: <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400">
+            Tu caja registradora inteligente para cobro en segundos
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          Diseñado para restaurantes, cafeterías, tiendas de retail y negocios de mostrador que buscan cobrar a máxima velocidad, emitir tickets al instante y llevar arqueos sin errores.
+        </p>
+
+        <!-- Main CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="../demos/pos/index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-base shadow-xl shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95">
+            <svg class="w-5 h-5 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Probar Demo Interactiva
+          </a>
+          
+          <a href="#precios" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 font-semibold text-base transition-colors hover:border-slate-700">
+            Elegir Plan / Rentar
+          </a>
+        </div>
+
+        <!-- Metric highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-slate-900 text-left">
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Velocidad de Cobro</p>
+            <p class="text-lg font-bold text-white mt-0.5">&lt; 3 Clics</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Dispositivos</p>
+            <p class="text-lg font-bold text-white mt-0.5">PC, Tablet &amp; Móvil</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Hardware</p>
+            <p class="text-lg font-bold text-white mt-0.5">USB / Bluetooth</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Arquitectura</p>
+            <p class="text-lg font-bold text-emerald-400 mt-0.5">Costo $0 Hosting</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BASE MODULE SECTION ================= -->
+    <section id="modulos" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Listo Para Operar</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">El Núcleo de Cobro: Módulo Base</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Una interfaz táctil con pantalla dividida pensada para trabajar sin fricción durante las horas de mayor afluencia.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            
+            <div class="lg:col-span-2 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+                ✔ Incluido en todos los planes
+              </div>
+              
+              <h3 class="text-2xl sm:text-3xl font-bold text-white">
+                Catálogo Táctil, Ticket Interactivo &amp; Cambio Automático
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Organiza tus artículos por pestañas de categorías con íconos de alto impacto. Agrega productos con un toque, modifica cantidades en el ticket al instante y calcula automáticamente el cambio a devolver en pagos en efectivo o terminal.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Catálogo Táctil Rápido</h4>
+                    <p class="text-xs text-slate-400">Botones grandes con fotos/íconos para agilizar la captura de pedidos.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Pantalla Dividida con Ticket</h4>
+                    <p class="text-xs text-slate-400">Visualización en tiempo real del desglose, subtotal e impuestos.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Calculadora de Cambio</h4>
+                    <p class="text-xs text-slate-400">Atajos rápidos de billetes ($50, $100, $200, $500) para evitar errores.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Emisión de Tickets Digitales</h4>
+                    <p class="text-xs text-slate-400">Comprobante de venta listo para visualizar e imprimir en cualquier navegador.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Preview Card -->
+            <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-inner space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span class="text-xs font-bold text-slate-300">Terminal POS Activa</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">Caja #01</span>
+              </div>
+              
+              <div class="space-y-2 font-mono text-xs">
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between">
+                  <span class="text-slate-300">1x Hamburguesa Clásica</span>
+                  <span class="text-white font-bold">$8.50</span>
+                </div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between">
+                  <span class="text-slate-300">2x Refresco 600ml</span>
+                  <span class="text-white font-bold">$4.00</span>
+                </div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 flex justify-between">
+                  <span class="text-slate-300">1x Papas Francesas</span>
+                  <span class="text-white font-bold">$3.50</span>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
+                <span class="text-slate-400">Total a Cobrar:</span>
+                <span class="font-black text-amber-400 text-base font-mono">$16.00 USD</span>
+              </div>
+
+              <a href="../demos/pos/index.html" class="block w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold text-center transition-colors">
+                Abrir Terminal Demo →
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ADD-ONS / PRO MODULES SECTION ================= -->
+    <section id="addons" class="py-16 lg:py-24 border-t border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Operaciones de Alto Nivel</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Módulos Adicionales (Add-ons Pro)</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Convierte tu terminal en una plataforma centralizada con cortes de caja ciegos, soporte de hardware e informes avanzados.
+          </p>
+        </div>
+
+        <!-- 4 Add-ons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- Add-on 1: Corte de Caja (X/Z) -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Add-on 01</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Corte de Caja (X/Z)</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Arqueos de caja ciegos, registro de retiros de efectivo para gastos menores, control de fondo inicial y generación automática del informe Z al finalizar el turno.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Cierre de turno con comparativa de ventas esperadas vs. reales</li>
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Desglose por método de pago (Efectivo, Tarjeta, Transferencia)</li>
+                <li class="flex items-center gap-2"><span class="text-indigo-400">✔</span> Envío automático del resumen de caja al correo del dueño</li>
+              </ul>
+            </div>
+            
+            <div class="pt-2 text-xs font-semibold text-indigo-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 2: Impresión Térmica & Hardware -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-blue-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Add-on 02</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Impresión Térmica &amp; Venta Touch</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Compatibilidad nativa con impresoras térmicas de tickets (58mm y 80mm vía USB, Red o Bluetooth), cajones de dinero automáticos y lectores ópticos de código de barras.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-blue-400">✔</span> Disparo automático de apertura para cajón portamonedas</li>
+                <li class="flex items-center gap-2"><span class="text-blue-400">✔</span> Formato de ticket optimizado con logo y código QR</li>
+                <li class="flex items-center gap-2"><span class="text-blue-400">✔</span> Soporte para escaneo rápido con pistola láser USB</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-blue-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 3: Múltiples Cajas / Sucursales -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Add-on 03</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Múltiples Cajas / Sucursales</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Conecta diferentes terminales de cobro operando al mismo tiempo en una sola tienda o administra sucursales independientes desde una consola central en Supabase.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Perfiles con permisos específicos para Cajeros vs. Supervisores</li>
+                <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Sincronización en tiempo real sin bloqueo de mesas/cajas</li>
+                <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Catálogo unificado con precios diferenciados por sucursal</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-cyan-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 4: Reportes de Ventas Express -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Add-on 04</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Reportes de Ventas Express</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Descubre tus horas pico de consumo, productos con mayor margen de utilidad, rendimiento por cajero y comparativas de ventas diarias, semanales y mensuales.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Gráficas dinámicas de horas pico para optimizar tu personal</li>
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Top 10 de platillos o artículos más rentables</li>
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Exportación de datos a Excel / CSV para contabilidad</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-amber-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PRICING SECTION ================= -->
+    <section id="precios" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-indigo-400 font-semibold text-xs tracking-wider uppercase">Inversión Inteligente</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Planes y Precios Transparentes</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Sin contratos forzosos ni comisiones por transacción. Renta mensual fija con soporte y actualizaciones continuas.
+          </p>
+        </div>
+
+        <!-- Pricing Cards (2 Columns) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+          
+          <!-- Plan Base -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-700">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Base POS</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300">Caja Única</span>
+              </div>
+              <p class="text-slate-400 text-xs sm:text-sm mb-6">
+                La opción ágil para negocios que requieren una terminal táctil veloz para registrar ventas de mostrador.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <span class="text-3xl font-extrabold text-white">$12 USD</span>
+                <span class="text-slate-400 text-sm"> / mes</span>
+                <p class="text-xs text-slate-500 mt-1">Aprox. $220 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> 1 Terminal / Caja activa
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Catálogo táctil con categorías ilimitadas
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Cálculo automático de cambio en efectivo y tarjeta
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Emisión de ticket digital estándar
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin corte de caja Z ciego avanzado
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin soporte multi-sucursal ni multi-cajeros
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Base POS ($12 USD/mes)')" class="w-full py-3.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all text-center">
+              Rentar Plan Base
+            </button>
+          </div>
+
+          <!-- Plan Pro Modular (Featured) -->
+          <div class="bg-gradient-to-b from-indigo-950/50 via-slate-900 to-slate-900 border-2 border-indigo-500 rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-indigo-500/10">
+            
+            <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 text-white text-[11px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-full shadow-md">
+              Recomendado
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Pro Modular</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Todo Incluido</span>
+              </div>
+              <p class="text-slate-300 text-xs sm:text-sm mb-6">
+                Para negocios en expansión que requieren control de cajeros, hardware térmico y reportes ejecutivos.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-indigo-500/30">
+                <span class="text-3xl font-extrabold text-white">$25 USD</span>
+                <span class="text-slate-300 text-sm"> / mes</span>
+                <p class="text-xs text-indigo-300 mt-1">Aprox. $460 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-200 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Base</strong> completo sin límites de venta
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Corte de Caja (X/Z)</strong> con auditoría
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Impresión Térmica</strong> (USB/Bluetooth/Láser)
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Múltiples Cajas / Sucursales</strong> en Supabase
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Reportes de Ventas Express</strong> con horas pico
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Soporte técnico prioritario FORGE
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Pro Modular POS ($25 USD/mes)')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] text-center">
+              Rentar Plan Pro Modular
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= RENT / CHECKOUT MODAL ================= -->
+    <div id="modal-checkout" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-slate-900 border border-indigo-500/40 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+        
+        <button id="btn-close-checkout" aria-label="Cerrar modal" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 mx-auto flex items-center justify-center mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-white">Configurar Renta de Tu Terminal</h3>
+          <p id="modal-selected-plan" class="text-indigo-400 text-xs font-semibold mt-1">Plan Pro Modular POS ($25 USD/mes)</p>
+
+          <form id="form-checkout" class="mt-6 space-y-3.5 text-left">
+            <div>
+              <label for="client-name" class="block text-xs font-medium text-slate-300 mb-1">Nombre del Negocio</label>
+              <input type="text" id="client-name" required placeholder="Ej: Cafetería Central" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+              <label for="client-email" class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico</label>
+              <input type="email" id="client-email" required placeholder="administracion@minegocio.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition-all mt-4">
+              Continuar al Aprovisionamiento →
+            </button>
+          </form>
+
+          <p class="text-[11px] text-slate-500 mt-3">Infraestructura FORGEPRIME con base de datos privada en Supabase.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+            F
+          </div>
+          <div>
+            <span class="font-bold text-white text-base">FORGE Hub</span>
+            <p class="text-xs text-slate-500">Soluciones Web Modulares Express</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+          <a href="../index.html" class="hover:text-white transition-colors">Hub Principal</a>
+          <a href="../demos/pos/index.html" class="hover:text-white transition-colors">Demo POS Express</a>
+          <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+          <a href="#addons" class="hover:text-white transition-colors">Add-ons</a>
+          <a href="#precios" class="hover:text-white transition-colors">Precios</a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-900 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 FORGE. Todos los derechos reservados.</p>
+        <p>Construido bajo estándar FORGEPRIME (Vanilla JS, Netlify Functions &amp; Supabase).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const modalCheckout = document.getElementById('modal-checkout');
+    const btnCloseCheckout = document.getElementById('btn-close-checkout');
+    const modalSelectedPlan = document.getElementById('modal-selected-plan');
+    const formCheckout = document.getElementById('form-checkout');
+
+    function handlePlanSelection(planName) {
+      modalSelectedPlan.textContent = `Seleccionado: ${planName}`;
+      modalCheckout.classList.remove('hidden');
+      modalCheckout.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      modalCheckout.classList.add('hidden');
+      modalCheckout.classList.remove('flex');
+    }
+
+    btnCloseCheckout.addEventListener('click', closeCheckoutModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalCheckout) {
+        closeCheckoutModal();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalCheckout.classList.contains('hidden')) {
+        closeCheckoutModal();
+      }
+    });
+
+    formCheckout.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value;
+      const email = document.getElementById('client-email').value;
+      
+      closeCheckoutModal();
+      alert(`¡Solicitud recibida con éxito!\n\nNegocio: ${name}\nCorreo: ${email}\n\nEn la siguiente etapa, este formulario conectará con Netlify Functions y Supabase para el aprovisionamiento instantáneo de tu terminal.`);
+    });
+  </script>
+
+</body>
+</html>

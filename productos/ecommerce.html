@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORGE E-commerce | Tu tienda en línea lista para vender en minutos</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Tema Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+              950: '#022c22'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-200">
+            F
+          </div>
+          <span class="text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+            FORGE
+            <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold tracking-normal">SHOP</span>
+          </span>
+        </a>
+
+        <span class="hidden sm:inline text-slate-700">|</span>
+
+        <!-- Back to Hub link -->
+        <a href="../index.html" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Hub Principal
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+        <a href="#addons" class="hover:text-white transition-colors">Add-ons Pro</a>
+        <a href="#precios" class="hover:text-white transition-colors">Planes &amp; Precios</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="../demos/ecommerce/index.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-semibold rounded-lg border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 transition-all">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Demo en vivo
+        </a>
+        <a href="#precios" class="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition-all shadow-md shadow-emerald-600/30">
+          Rentar Ahora
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <!-- Background Ambient Glow -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-emerald-400 mb-8 shadow-inner">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px]">E-COMMERCE EXPRESS</span>
+          Listo para Cobrar y Despachar
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          FORGE E-commerce: <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+            Tu tienda en línea lista para vender en minutos
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          Catálogo interactivo de alta velocidad, carrito persistente optimizado para móviles y múltiples pasarelas de pago directas a tu cuenta bancaria o WhatsApp.
+        </p>
+
+        <!-- Main CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="../demos/ecommerce/index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-base shadow-xl shadow-emerald-600/30 transition-all hover:scale-105 active:scale-95">
+            <svg class="w-5 h-5 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Probar Demo Interactiva
+          </a>
+          
+          <a href="#precios" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 font-semibold text-base transition-colors hover:border-slate-700">
+            Elegir Plan / Rentar
+          </a>
+        </div>
+
+        <!-- Metric highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-slate-900 text-left">
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Carga Móvil</p>
+            <p class="text-lg font-bold text-white mt-0.5">&lt; 1 Segundo</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Comisión por Venta</p>
+            <p class="text-lg font-bold text-emerald-400 mt-0.5">0% FORGE Fee</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Pasarelas</p>
+            <p class="text-lg font-bold text-white mt-0.5">Stripe &amp; MP</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80">
+            <p class="text-xs text-slate-500 uppercase font-semibold">Infraestructura</p>
+            <p class="text-lg font-bold text-white mt-0.5">Costo $0 Hosting</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BASE MODULE SECTION ================= -->
+    <section id="modulos" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-emerald-400 font-semibold text-xs tracking-wider uppercase">Esencial para Empezar</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">El Núcleo Comercial: Módulo Base</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Toda la experiencia de compra fluida que tus clientes esperan, lista para convertir visitantes en compradores.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-emerald-950/40 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            
+            <div class="lg:col-span-2 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+                ✔ Incluido en todos los planes
+              </div>
+              
+              <h3 class="text-2xl sm:text-3xl font-bold text-white">
+                Catálogo Dinámico, Carrito &amp; Checkout Exprés
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Diseñado para reducir la fricción al mínimo: filtros rápidos por categorías, visualización de precios y variantes, persistencia de artículos en el navegador y checkout limpio de un solo paso.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Catálogo Responsive</h4>
+                    <p class="text-xs text-slate-400">Cuadrículas dinámicas con imágenes HD, fichas y selector de cantidad.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Carrito Lateral Deslizante</h4>
+                    <p class="text-xs text-slate-400">Visualización de subtotal y cálculo automático sin recargar la página.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">Checkout Simplificado</h4>
+                    <p class="text-xs text-slate-400">Captura de datos de envío y facturación en un solo formulario veloz.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</div>
+                  <div>
+                    <h4 class="text-sm font-semibold text-white">SEO &amp; Carga Rápida</h4>
+                    <p class="text-xs text-slate-400">Estructura HTML5 ligera para posicionar tus productos en Google.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Preview Card -->
+            <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-inner space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span class="text-xs font-bold text-slate-300">Vista Módulo Base</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Activo</span>
+              </div>
+              
+              <div class="space-y-2.5">
+                <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-xs">🛍️</div>
+                    <div>
+                      <p class="text-xs font-medium text-slate-200">Playera Oversized</p>
+                      <p class="text-[10px] text-slate-400">$25.00 USD (Cant: 1)</p>
+                    </div>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-400">$25.00</span>
+                </div>
+
+                <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center text-xs">👟</div>
+                    <div>
+                      <p class="text-xs font-medium text-slate-200">Sneakers Urban</p>
+                      <p class="text-[10px] text-slate-400">$80.00 USD (Cant: 1)</p>
+                    </div>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-400">$80.00</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center text-xs">
+                <span class="text-slate-400">Total en Carrito:</span>
+                <span class="font-extrabold text-white text-sm">$105.00 USD</span>
+              </div>
+
+              <a href="../demos/ecommerce/index.html" class="block w-full py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold text-center transition-colors">
+                Probar en Sandbox →
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= ADD-ONS / PRO MODULES SECTION ================= -->
+    <section id="addons" class="py-16 lg:py-24 border-t border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-emerald-400 font-semibold text-xs tracking-wider uppercase">Potencia de Ventas Pro</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Módulos Adicionales (Add-ons Pro)</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Habilita pagos en línea con tarjeta, pedidos por chat y control de existencias en tiempo real.
+          </p>
+        </div>
+
+        <!-- 4 Add-ons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- Add-on 1: Pasarela de Pagos -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Add-on 01</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Pasarela de Pagos</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Integración directa con Stripe y Mercado Pago para recibir pagos con tarjetas de crédito, débito, transferencias SPEI y tiendas de conveniencia sin intermediarios.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Webhooks de confirmación automática en Netlify Functions</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Acreditación de saldo directo en tu cuenta bancaria</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Entornos Sandbox de prueba y Producción</li>
+              </ul>
+            </div>
+            
+            <div class="pt-2 text-xs font-semibold text-emerald-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 2: Pedidos por WhatsApp -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-teal-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20">Add-on 02</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Pedidos por WhatsApp</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Permite a tus clientes enviar el resumen de su carrito perfectamente formateado (lista de artículos, total, dirección y método de pago) directo al WhatsApp de ventas.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-teal-400">✔</span> Mensaje estructurado con botón de compra de 1 clic</li>
+                <li class="flex items-center gap-2"><span class="text-teal-400">✔</span> Soporte para ventas asistidas y transferencias manuales</li>
+                <li class="flex items-center gap-2"><span class="text-teal-400">✔</span> Notificación instantánea en el móvil del vendedor</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-teal-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 3: Cupones y Descuentos -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Add-on 03</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Cupones y Descuentos</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Motor inteligente de códigos promocionales con descuentos por porcentaje o monto fijo, fechas de caducidad y límites de uso por cliente.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Cupones de porcentaje (ej: 15% OFF) y monto fijo ($100 MXN)</li>
+                <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Validación automática en checkout</li>
+                <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Restricción por monto mínimo de compra</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-cyan-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+          <!-- Add-on 4: Inventario Sincronizado -->
+          <div class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-7 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/10 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Add-on 04</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-2">Módulo Inventario Sincronizado</h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Descuento de stock en tiempo real tras cada compra confirmada, bloqueo de venta para productos agotados y alertas automáticas de reposición.
+              </p>
+
+              <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800 pt-4">
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Bloqueo instantáneo de sobreventa</li>
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Avisos visuales de "Últimas unidades disponibles"</li>
+                <li class="flex items-center gap-2"><span class="text-amber-400">✔</span> Panel de control de almacén en Supabase</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 text-xs font-semibold text-amber-400 flex items-center gap-1">
+              Disponible en Plan Pro Modular →
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PRICING SECTION ================= -->
+    <section id="precios" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-emerald-400 font-semibold text-xs tracking-wider uppercase">Sin Comisiones Ocultas</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Compara y Renta tu E-commerce</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Tú eres dueño de tus clientes y de tus ingresos. Sin plazos forzosos.
+          </p>
+        </div>
+
+        <!-- Pricing Cards (2 Columns) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch">
+          
+          <!-- Plan Base -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-700">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Base</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300">Esencial</span>
+              </div>
+              <p class="text-slate-400 text-xs sm:text-sm mb-6">
+                Perfecto para catálogos locales, venta de productos por catálogo y cobro contra entrega.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <span class="text-3xl font-extrabold text-white">$15 USD</span>
+                <span class="text-slate-400 text-sm"> / mes</span>
+                <p class="text-xs text-slate-500 mt-1">Aprox. $280 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Catálogo interactivo hasta 100 productos
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Carrito de compras local y checkout
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Despliegue en subdominio Netlify
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> 0% de comisiones FORGE
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin pasarela automática Stripe/Mercado Pago
+                </li>
+                <li class="flex items-center gap-2.5 text-slate-500">
+                  <span class="text-slate-600">✕</span> Sin sincronización de inventario en tiempo real
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Base E-commerce ($15 USD/mes)')" class="w-full py-3.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all text-center">
+              Rentar Plan Base
+            </button>
+          </div>
+
+          <!-- Plan Pro Modular (Featured) -->
+          <div class="bg-gradient-to-b from-emerald-950/50 via-slate-900 to-slate-900 border-2 border-emerald-500 rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-emerald-500/10">
+            
+            <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[11px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-full shadow-md">
+              Recomendado
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-white">Plan Pro Modular</h3>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Todo Incluido</span>
+              </div>
+              <p class="text-slate-300 text-xs sm:text-sm mb-6">
+                Para marcas y tiendas que buscan automatizar cobros con tarjeta, WhatsApp y sincronizar stock.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-emerald-500/30">
+                <span class="text-3xl font-extrabold text-white">$29 USD</span>
+                <span class="text-slate-300 text-sm"> / mes</span>
+                <p class="text-xs text-emerald-300 mt-1">Aprox. $540 MXN / mes</p>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="text-xs sm:text-sm text-slate-200 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Catálogo Ilimitado</strong> de productos y variantes
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Pasarelas</strong> (Stripe + Mercado Pago)
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Pedidos WhatsApp</strong> con formato pro
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Cupones y Descuentos</strong> avanzados
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> <strong>Módulo Inventario Sincronizado</strong> en Supabase
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="text-emerald-400 font-bold">✔</span> Soporte técnico prioritario FORGE
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="handlePlanSelection('Plan Pro Modular E-commerce ($29 USD/mes)')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] text-center">
+              Rentar Plan Pro Modular
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= RENT / CHECKOUT MODAL ================= -->
+    <div id="modal-checkout" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-slate-900 border border-emerald-500/40 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+        
+        <button id="btn-close-checkout" aria-label="Cerrar modal" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 mx-auto flex items-center justify-center mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-white">Configurar Renta de Tu Tienda</h3>
+          <p id="modal-selected-plan" class="text-emerald-400 text-xs font-semibold mt-1">Plan Pro Modular E-commerce ($29 USD/mes)</p>
+
+          <form id="form-checkout" class="mt-6 space-y-3.5 text-left">
+            <div>
+              <label for="client-name" class="block text-xs font-medium text-slate-300 mb-1">Nombre o Tienda</label>
+              <input type="text" id="client-name" required placeholder="Ej: Mi Tienda Online" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <div>
+              <label for="client-email" class="block text-xs font-medium text-slate-300 mb-1">Correo Electrónico</label>
+              <input type="email" id="client-email" required placeholder="ventas@mitienda.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all mt-4">
+              Continuar al Aprovisionamiento →
+            </button>
+          </form>
+
+          <p class="text-[11px] text-slate-500 mt-3">Infraestructura FORGEPRIME con base de datos privada en Supabase.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-sm">
+            F
+          </div>
+          <div>
+            <span class="font-bold text-white text-base">FORGE Hub</span>
+            <p class="text-xs text-slate-500">Soluciones Web Modulares Express</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+          <a href="../index.html" class="hover:text-white transition-colors">Hub Principal</a>
+          <a href="../demos/ecommerce/index.html" class="hover:text-white transition-colors">Demo E-commerce</a>
+          <a href="#modulos" class="hover:text-white transition-colors">Módulo Base</a>
+          <a href="#addons" class="hover:text-white transition-colors">Add-ons</a>
+          <a href="#precios" class="hover:text-white transition-colors">Precios</a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-900 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 FORGE. Todos los derechos reservados.</p>
+        <p>Construido bajo estándar FORGEPRIME (Vanilla JS, Netlify Functions &amp; Supabase).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const modalCheckout = document.getElementById('modal-checkout');
+    const btnCloseCheckout = document.getElementById('btn-close-checkout');
+    const modalSelectedPlan = document.getElementById('modal-selected-plan');
+    const formCheckout = document.getElementById('form-checkout');
+
+    function handlePlanSelection(planName) {
+      modalSelectedPlan.textContent = `Seleccionado: ${planName}`;
+      modalCheckout.classList.remove('hidden');
+      modalCheckout.classList.add('flex');
+    }
+
+    function closeCheckoutModal() {
+      modalCheckout.classList.add('hidden');
+      modalCheckout.classList.remove('flex');
+    }
+
+    btnCloseCheckout.addEventListener('click', closeCheckoutModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalCheckout) {
+        closeCheckoutModal();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modalCheckout.classList.contains('hidden')) {
+        closeCheckoutModal();
+      }
+    });
+
+    formCheckout.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value;
+      const email = document.getElementById('client-email').value;
+      
+      closeCheckoutModal();
+      alert(`¡Solicitud recibida con éxito!\n\nTienda: ${name}\nCorreo: ${email}\n\nEn la siguiente etapa, este formulario conectará con Netlify Functions y Supabase para el aprovisionamiento instantáneo.`);
+    });
+  </script>
+
+</body>
+</html>

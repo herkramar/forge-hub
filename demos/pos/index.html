@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORGE POS Express (Demo) | Punto de Venta Táctil</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Configuración de Tema Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pos: {
+              50: '#fffbeb',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Estilizar scrollbar táctil */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 h-full flex flex-col antialiased overflow-hidden selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-slate-900 border-b border-slate-800 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4 shrink-0 z-30">
+    
+    <!-- Left: Brand & Return -->
+    <div class="flex items-center gap-3">
+      <a href="../../index.html" class="flex items-center gap-1.5 text-slate-400 hover:text-white text-xs font-medium transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        <span class="hidden sm:inline">Hub</span>
+      </a>
+
+      <span class="text-slate-700">|</span>
+
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-slate-950 font-black text-base shadow-md shadow-amber-500/20">
+          ⚡
+        </div>
+        <div>
+          <span class="text-base font-extrabold text-white tracking-tight flex items-center gap-1.5">
+            FORGE <span class="text-amber-400">POS</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono">EXPRESS</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Cash Register Status -->
+    <div class="flex items-center gap-2">
+      <div id="register-status-badge" class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+        <span id="register-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="register-text">Caja #01 — Turno Abierto</span>
+      </div>
+      
+      <button onclick="openProModal('Corte de Caja Z & Facturación Fiscal')" class="hidden md:flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition-colors">
+        <span>Corte Z</span>
+        <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded">PRO</span>
+      </button>
+    </div>
+
+    <!-- Right: Pro CTA Button -->
+    <div class="flex items-center gap-2">
+      <button id="btn-unlock-pro-header" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-xs shadow-md shadow-amber-500/20 transition-all hover:scale-105 active:scale-95">
+        <svg class="w-3.5 h-3.5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+        </svg>
+        <span>Desbloquear Versión Pro</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= SPLIT SCREEN POS TERMINAL ================= -->
+  <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+
+    <!-- ================= LEFT: TOUCH CATALOG & CATEGORIES ================= -->
+    <div class="flex-1 flex flex-col bg-slate-950 overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800">
+      
+      <!-- Category Tabs (Touch Friendly) -->
+      <div class="p-3 bg-slate-900/60 border-b border-slate-800 flex items-center gap-2 overflow-x-auto shrink-0">
+        <button onclick="filterCategory('all')" id="tab-all" class="category-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20">
+          🍽️ Todos (10)
+        </button>
+        <button onclick="filterCategory('alimentos')" id="tab-alimentos" class="category-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
+          🍔 Alimentos
+        </button>
+        <button onclick="filterCategory('bebidas')" id="tab-bebidas" class="category-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
+          🥤 Bebidas
+        </button>
+        <button onclick="filterCategory('snacks')" id="tab-snacks" class="category-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
+          🍟 Snacks &amp; Postres
+        </button>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="product-grid" class="flex-1 p-3 sm:p-4 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+
+    <!-- ================= RIGHT: RECEIPT / ORDER TICKET ================= -->
+    <div class="w-full lg:w-96 xl:w-[420px] bg-slate-900/90 flex flex-col justify-between shrink-0 shadow-2xl h-1/2 lg:h-full z-20">
+      
+      <!-- Ticket Header -->
+      <div class="p-4 border-b border-slate-800 bg-slate-900 flex items-center justify-between shrink-0">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="font-extrabold text-white text-base">Ticket de Venta</h2>
+            <span id="ticket-id" class="text-xs px-2 py-0.5 rounded bg-slate-800 font-mono text-amber-400">#ORD-0428</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-0.5" id="ticket-time">Consumo en local</p>
+        </div>
+
+        <button onclick="clearTicket()" title="Limpiar ticket" class="p-2 rounded-lg bg-slate-800 hover:bg-red-500/20 hover:text-red-400 text-slate-400 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Ticket Items List -->
+      <div id="ticket-items" class="flex-1 overflow-y-auto p-4 space-y-2.5">
+        <!-- Items rendered by JS -->
+      </div>
+
+      <!-- Empty Ticket Prompt -->
+      <div id="ticket-empty-prompt" class="hidden flex-1 flex-col items-center justify-center p-6 text-center text-slate-500">
+        <svg class="w-12 h-12 mb-2 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+        </svg>
+        <p class="text-xs font-semibold text-slate-400">Sin productos marcados</p>
+        <p class="text-[11px] text-slate-600 mt-0.5">Toca cualquier producto del catálogo para añadirlo al ticket.</p>
+      </div>
+
+      <!-- Ticket Totals & Big Checkout Button -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 space-y-3 shrink-0">
+        
+        <div class="space-y-1.5 text-xs">
+          <div class="flex justify-between text-slate-400">
+            <span>Subtotal:</span>
+            <span id="pos-subtotal" class="font-mono text-slate-200 font-semibold">$0.00</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>IVA (16% Incluido):</span>
+            <span id="pos-tax" class="font-mono text-slate-200 font-semibold">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center text-white pt-2 border-t border-slate-800/80">
+            <span class="text-sm font-bold uppercase tracking-wider">Total a Cobrar:</span>
+            <span id="pos-total" class="text-2xl font-black text-amber-400 font-mono">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Big Touch Charge Button -->
+        <button id="btn-charge" onclick="openChargeModal()" disabled class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-black text-base tracking-wider uppercase shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          Cobrar Ticket
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= CHARGE MODAL (EFECTIVO / TARJETA / CAMBIO) ================= -->
+  <div id="modal-charge" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+      
+      <!-- Close Button -->
+      <button onclick="closeChargeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg">
+        ✕
+      </button>
+
+      <div class="text-center mb-5">
+        <p class="text-xs uppercase font-bold text-slate-400 tracking-wider">Monto Total de la Orden</p>
+        <h3 id="modal-charge-total" class="text-3xl font-black text-amber-400 font-mono mt-1">$0.00</h3>
+      </div>
+
+      <!-- Payment Method Switcher -->
+      <div class="grid grid-cols-2 gap-2 p-1 bg-slate-950 rounded-xl border border-slate-800 mb-5">
+        <button id="btn-pay-cash" onclick="setPaymentMethod('cash')" class="py-2.5 rounded-lg text-xs font-bold transition-all bg-amber-500 text-slate-950 flex items-center justify-center gap-1.5 shadow-sm">
+          💵 Efectivo
+        </button>
+        <button id="btn-pay-card" onclick="setPaymentMethod('card')" class="py-2.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
+          💳 Tarjeta / Terminal
+        </button>
+      </div>
+
+      <!-- Cash Calculation Section -->
+      <div id="cash-calculation-section" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Monto Recibido en Efectivo:</label>
+          <div class="relative">
+            <span class="absolute left-3.5 top-2.5 text-slate-400 font-mono font-bold">$</span>
+            <input 
+              type="number" 
+              id="input-cash-received" 
+              placeholder="0.00" 
+              step="0.50" 
+              oninput="calculateChange()" 
+              class="w-full pl-8 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-lg font-bold focus:outline-none focus:border-amber-500"
+            >
+          </div>
+        </div>
+
+        <!-- Quick Bill Buttons -->
+        <div class="grid grid-cols-4 gap-2">
+          <button onclick="setQuickCash(50)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-slate-200 border border-slate-700">$50</button>
+          <button onclick="setQuickCash(100)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-slate-200 border border-slate-700">$100</button>
+          <button onclick="setQuickCash(200)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-slate-200 border border-slate-700">$200</button>
+          <button onclick="setQuickCash(500)" class="py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono font-bold text-slate-200 border border-slate-700">$500</button>
+        </div>
+
+        <!-- Calculated Change -->
+        <div class="p-3.5 bg-slate-950/80 rounded-xl border border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-400">Cambio a Entregar:</span>
+          <span id="pos-change-display" class="text-xl font-black text-emerald-400 font-mono">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Card Section (Hidden by default) -->
+      <div id="card-calculation-section" class="hidden p-6 bg-slate-950 rounded-xl border border-slate-800 text-center space-y-2">
+        <div class="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <p class="text-xs font-bold text-white">Inserta o acerca la tarjeta en la terminal POS</p>
+        <p class="text-[11px] text-slate-400">Esperando respuesta de pasarela de cobro bancaria...</p>
+      </div>
+
+      <!-- Confirm Action Button -->
+      <button onclick="confirmTransaction()" class="w-full mt-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-emerald-600/30 transition-all active:scale-98 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+        Completar Venta &amp; Imprimir Ticket
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ================= PRO CONVERSION MODAL ================= -->
+  <div id="modal-pro" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+      
+      <button onclick="closeProModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 font-black text-xl mx-auto flex items-center justify-center mb-3 shadow-lg shadow-amber-500/20">
+          ⚡
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-white">Activa FORGE POS Pro</h3>
+        <p id="pro-modal-msg" class="text-slate-400 text-xs sm:text-sm mt-1">Multi-caja, facturación fiscal automática y sincronización de almacén.</p>
+
+        <!-- Pricing Badge -->
+        <div class="mt-4 p-3.5 bg-slate-950/70 rounded-xl border border-amber-500/20 text-center">
+          <span class="text-2xl font-extrabold text-white">$29 USD<span class="text-sm font-normal text-slate-400">/mes</span></span>
+          <span class="text-xs text-slate-500 mx-2">o</span>
+          <span class="text-lg font-bold text-amber-300">$500 MXN<span class="text-xs font-normal text-slate-400">/mes</span></span>
+        </div>
+
+        <!-- Features Checklist -->
+        <div class="mt-5 text-left space-y-2.5 bg-slate-950/40 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm">
+          <div class="flex items-center gap-2.5 text-slate-200">
+            <span class="text-amber-400 font-bold">✔</span>
+            <span><strong>Corte de Caja Z &amp; X:</strong> Arqueo de efectivo y auditoría de cajeros.</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-slate-200">
+            <span class="text-amber-400 font-bold">✔</span>
+            <span><strong>Facturación Electrónica:</strong> Generación instantánea de tickets con QR fiscal.</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-slate-200">
+            <span class="text-amber-400 font-bold">✔</span>
+            <span><strong>Multi-cajas Ilimitadas:</strong> Sincronización en tiempo real vía Supabase.</span>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="form-activate-pro" onsubmit="handleProActivation(event)" class="mt-6 space-y-3.5">
+          <input 
+            type="email" 
+            id="pro-email" 
+            required 
+            placeholder="gerente@mirestaurante.com" 
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-amber-500"
+          >
+          <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-amber-500/20 transition-all active:scale-98">
+            Activar Licencia Pro
+          </button>
+        </form>
+
+        <p class="text-[11px] text-slate-500 mt-3">Sin contratos forzosos. Cancela cuando lo desees.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    // Base de datos de productos de ejemplo
+    const PRODUCTS = [
+      { id: 1, name: 'Hamburguesa Clásica', category: 'alimentos', price: 8.50, icon: '🍔' },
+      { id: 2, name: 'Tacos Pastor (3 pzas)', category: 'alimentos', price: 6.00, icon: '🌮' },
+      { id: 3, name: 'Pizza Pepperoni Ind.', category: 'alimentos', price: 7.50, icon: '🍕' },
+      { id: 4, name: 'Sándwich Gourmet', category: 'alimentos', price: 5.00, icon: '🥪' },
+      { id: 5, name: 'Café Americano', category: 'bebidas', price: 2.50, icon: '☕' },
+      { id: 6, name: 'Refresco 600ml', category: 'bebidas', price: 2.00, icon: '🥤' },
+      { id: 7, name: 'Cerveza Artesanal', category: 'bebidas', price: 4.50, icon: '🍺' },
+      { id: 8, name: 'Agua Mineral', category: 'bebidas', price: 1.80, icon: '💧' },
+      { id: 9, name: 'Papas Francesas', category: 'snacks', price: 3.50, icon: '🍟' },
+      { id: 10, name: 'Brownie con Nieve', category: 'snacks', price: 4.00, icon: '🍰' },
+    ];
+
+    // Estado del POS
+    let cart = [];
+    let currentCategory = 'all';
+    let paymentMethod = 'cash';
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      renderTicket();
+      updateTicketTime();
+    });
+
+    function updateTicketTime() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('ticket-time').textContent = `Mesa / Mostrador • ${timeStr}`;
+    }
+
+    // Filtrar Categorías
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-tab').forEach(tab => {
+        tab.className = 'category-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700';
+      });
+      const activeTab = document.getElementById(`tab-${cat}`);
+      if (activeTab) {
+        activeTab.className = 'category-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20';
+      }
+      renderProducts();
+    }
+
+    // Render Catálogo de Productos
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      const filtered = currentCategory === 'all' 
+        ? PRODUCTS 
+        : PRODUCTS.filter(p => p.category === currentCategory);
+
+      grid.innerHTML = filtered.map(p => `
+        <button onclick="addToTicket(${p.id})" class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-800/80 active:scale-95 transition-all text-left flex flex-col justify-between h-32 group shadow-sm">
+          <div class="flex items-center justify-between w-full">
+            <span class="text-2xl p-1.5 rounded-xl bg-slate-950 border border-slate-800/80 group-hover:scale-110 transition-transform">${p.icon}</span>
+            <span class="text-xs font-bold text-amber-400 font-mono">$${p.price.toFixed(2)}</span>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-white leading-snug line-clamp-2">${p.name}</h4>
+            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Tocar para sumar</span>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    // Manejo de Items en Ticket
+    function addToTicket(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      const existing = cart.find(i => i.id === productId);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      renderTicket();
+    }
+
+    function updateQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      renderTicket();
+    }
+
+    function removeItem(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      renderTicket();
+    }
+
+    function clearTicket() {
+      if (cart.length === 0) return;
+      if (confirm('¿Vaciar los productos del ticket actual?')) {
+        cart = [];
+        renderTicket();
+      }
+    }
+
+    // Render Ticket
+    function renderTicket() {
+      const container = document.getElementById('ticket-items');
+      const emptyPrompt = document.getElementById('ticket-empty-prompt');
+      const btnCharge = document.getElementById('btn-charge');
+
+      if (cart.length === 0) {
+        container.innerHTML = '';
+        emptyPrompt.classList.remove('hidden');
+        emptyPrompt.classList.add('flex');
+        btnCharge.disabled = true;
+        document.getElementById('pos-subtotal').textContent = '$0.00';
+        document.getElementById('pos-tax').textContent = '$0.00';
+        document.getElementById('pos-total').textContent = '$0.00';
+        return;
+      }
+
+      emptyPrompt.classList.add('hidden');
+      emptyPrompt.classList.remove('flex');
+      btnCharge.disabled = false;
+
+      let subtotal = 0;
+
+      container.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        return `
+          <div class="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="text-lg">${item.icon}</span>
+              <div class="truncate">
+                <p class="text-xs font-bold text-white truncate">${item.name}</p>
+                <p class="text-[11px] text-slate-400 font-mono">$${item.price.toFixed(2)} c/u</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700/80 rounded-lg p-0.5">
+                <button onclick="updateQty(${item.id}, -1)" class="w-5 h-5 rounded text-xs text-slate-300 hover:bg-slate-800 flex items-center justify-center">-</button>
+                <span class="text-xs font-bold text-white font-mono px-1">${item.qty}</span>
+                <button onclick="updateQty(${item.id}, 1)" class="w-5 h-5 rounded text-xs text-slate-300 hover:bg-slate-800 flex items-center justify-center">+</button>
+              </div>
+              <span class="text-xs font-extrabold text-amber-400 font-mono w-14 text-right">$${itemTotal.toFixed(2)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const tax = subtotal * 0.16;
+      const total = subtotal; // Precios con IVA desglosado
+
+      document.getElementById('pos-subtotal').textContent = `$${(subtotal - tax).toFixed(2)}`;
+      document.getElementById('pos-tax').textContent = `$${tax.toFixed(2)}`;
+      document.getElementById('pos-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Modal de Cobro
+    function openChargeModal() {
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      if (total === 0) return;
+
+      document.getElementById('modal-charge-total').textContent = `$${total.toFixed(2)} USD`;
+      document.getElementById('input-cash-received').value = '';
+      document.getElementById('pos-change-display').textContent = '$0.00';
+
+      document.getElementById('modal-charge').classList.remove('hidden');
+      document.getElementById('modal-charge').classList.add('flex');
+    }
+
+    function closeChargeModal() {
+      document.getElementById('modal-charge').classList.add('hidden');
+      document.getElementById('modal-charge').classList.remove('flex');
+    }
+
+    function setPaymentMethod(method) {
+      paymentMethod = method;
+      const btnCash = document.getElementById('btn-pay-cash');
+      const btnCard = document.getElementById('btn-pay-card');
+      const cashSection = document.getElementById('cash-calculation-section');
+      const cardSection = document.getElementById('card-calculation-section');
+
+      if (method === 'cash') {
+        btnCash.className = 'py-2.5 rounded-lg text-xs font-bold transition-all bg-amber-500 text-slate-950 flex items-center justify-center gap-1.5 shadow-sm';
+        btnCard.className = 'py-2.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
+        cashSection.classList.remove('hidden');
+        cardSection.classList.add('hidden');
+      } else {
+        btnCard.className = 'py-2.5 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white flex items-center justify-center gap-1.5 shadow-sm';
+        btnCash.className = 'py-2.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
+        cashSection.classList.add('hidden');
+        cardSection.classList.remove('hidden');
+      }
+    }
+
+    function setQuickCash(amount) {
+      document.getElementById('input-cash-received').value = amount;
+      calculateChange();
+    }
+
+    function calculateChange() {
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const received = parseFloat(document.getElementById('input-cash-received').value) || 0;
+      const change = received - total;
+
+      const changeDisplay = document.getElementById('pos-change-display');
+      if (change >= 0) {
+        changeDisplay.textContent = `$${change.toFixed(2)}`;
+        changeDisplay.className = 'text-xl font-black text-emerald-400 font-mono';
+      } else {
+        changeDisplay.textContent = `Faltan $${Math.abs(change).toFixed(2)}`;
+        changeDisplay.className = 'text-base font-bold text-red-400 font-mono';
+      }
+    }
+
+    function confirmTransaction() {
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      closeChargeModal();
+
+      alert(`🧾 [TICKET IMPRESO - SIMULACIÓN]\n\nOrden completada por $${total.toFixed(2)} USD.\nMétodo: ${paymentMethod === 'cash' ? 'Efectivo' : 'Tarjeta'}\n\n¡Caja actualizada exitosamente!`);
+
+      // Limpiar ticket y regenerar ID
+      cart = [];
+      renderTicket();
+      document.getElementById('ticket-id').textContent = `#ORD-${Math.floor(1000 + Math.random() * 9000)}`;
+      updateTicketTime();
+    }
+
+    // Modal Pro
+    function openProModal(feature) {
+      if (feature) {
+        document.getElementById('pro-modal-msg').textContent = `La función "${feature}" requiere activación de FORGE POS Pro.`;
+      }
+      document.getElementById('modal-pro').classList.remove('hidden');
+      document.getElementById('modal-pro').classList.add('flex');
+    }
+
+    function closeProModal() {
+      document.getElementById('modal-pro').classList.add('hidden');
+      document.getElementById('modal-pro').classList.remove('flex');
+    }
+
+    function handleProActivation(e) {
+      e.preventDefault();
+      const email = document.getElementById('pro-email').value;
+      if (!email) return;
+
+      closeProModal();
+
+      // Cambiar estado en Header
+      const badge = document.getElementById('register-status-badge');
+      const dot = document.getElementById('register-dot');
+      const text = document.getElementById('register-text');
+
+      badge.className = 'flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold';
+      dot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+      text.textContent = `VERSIÓN PRO ACTIVADA — ${email}`;
+
+      const btnUnlock = document.getElementById('btn-unlock-pro-header');
+      btnUnlock.innerHTML = '✔ Licencia Pro Activa';
+      btnUnlock.className = 'px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-xs cursor-default';
+
+      alert(`¡Activación Exitosa!\n\nSe ha habilitado FORGE POS Pro para: ${email}.\nFunciones de Corte Z y Facturación desbloqueadas.`);
+    }
+
+    document.getElementById('btn-unlock-pro-header').addEventListener('click', () => openProModal());
+  </script>
+
+</body>
+</html>

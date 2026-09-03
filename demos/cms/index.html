@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Solutions (Demo) | FORGE Site/CMS Express</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Configuración de Tema Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#a855f7',
+              600: '#9333ea',
+              700: '#7e22ce',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-purple-500 selection:text-white">
+
+  <!-- ================= TOP NOTICE BANNER ================= -->
+  <div id="demo-banner" class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-center text-xs font-semibold text-amber-300 transition-all duration-300 flex items-center justify-center gap-2">
+    <span id="banner-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+    <span id="banner-text">MODO DEMO INTERACTIVA — Contenido y formularios simulados</span>
+  </div>
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-950/90 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Hub Return -->
+      <div class="flex items-center gap-4">
+        <a href="../../productos/cms.html" class="flex items-center gap-2 text-slate-400 hover:text-white text-xs sm:text-sm transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span class="hidden sm:inline">Detalles del Módulo</span>
+        </a>
+
+        <span class="text-slate-700">|</span>
+
+        <!-- Demo Site Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center text-white font-black text-lg shadow-md shadow-purple-500/20 group-hover:scale-105 transition-transform">
+            N
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-bold text-white tracking-tight leading-tight">Nova <span class="text-purple-400">Solutions</span></span>
+            <span class="text-[9px] text-slate-500 font-mono">FORGE CMS SITE</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+        <a href="#noticias" class="hover:text-white transition-colors">Noticias</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="flex items-center gap-3">
+        <button onclick="openProModal('Editor Visual CMS')" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium transition-colors">
+          <span>✏️ Editar Web</span>
+          <span class="text-[9px] bg-purple-500/20 text-purple-300 px-1 rounded">PRO</span>
+        </button>
+
+        <button id="btn-unlock-pro-header" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-purple-600/20 transition-all hover:scale-105 active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          <span>Desbloquear Versión Pro</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-purple-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-purple-400 mb-6 shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+          Soluciones Corporativas &amp; Soporte Técnico
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          Servicios Profesionales &amp; <br class="hidden sm:inline">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400">
+            Renta de Equipo Especializado
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          Impulsamos tus proyectos con consultoría técnica, infraestructura tecnológica y equipo audiovisual de última generación con disponibilidad inmediata.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#servicios" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-base shadow-xl shadow-purple-600/30 transition-all hover:scale-105 active:scale-95 text-center">
+            Ver Paquetes de Renta
+          </a>
+          <a href="#contacto" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 font-semibold text-base transition-colors hover:border-slate-700 text-center">
+            Solicitar Asesoría
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PAQUETES / SERVICIOS SECTION ================= -->
+    <section id="servicios" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-purple-400 font-semibold text-xs tracking-wider uppercase">Nuestra Oferta</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Paquetes de Servicios y Renta</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Precios transparentes y soluciones a la medida para todo tipo de proyectos.
+          </p>
+        </div>
+
+        <!-- 3 Packages Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+
+          <!-- Plan 1 -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-700">
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300">Nivel Básico</span>
+              <h3 class="text-xl font-bold text-white mt-3 mb-2">Consultoría &amp; Diagnóstico</h3>
+              <p class="text-slate-400 text-xs sm:text-sm mb-6">
+                Evaluación técnica de requerimientos y asesoría en sitio por especialistas.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <span class="text-3xl font-extrabold text-white">$150 USD</span>
+                <span class="text-slate-400 text-sm"> / jornada</span>
+              </div>
+
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Visita técnica presencial o remota</li>
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Informe de compatibilidad de equipo</li>
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Soporte telefónico durante el evento</li>
+                <li class="flex items-center gap-2.5 text-slate-500"><span class="text-slate-600">✕</span> No incluye equipo de audio/video</li>
+              </ul>
+            </div>
+
+            <button onclick="selectPackage('Consultoría & Diagnóstico ($150 USD)')" class="w-full py-3 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm transition-all text-center">
+              Solicitar Cotización
+            </button>
+          </div>
+
+          <!-- Plan 2 (Featured) -->
+          <div class="bg-gradient-to-b from-purple-950/50 via-slate-900 to-slate-900 border-2 border-purple-500 rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl shadow-purple-500/10">
+            <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-[11px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-full shadow-md">
+              Más Solicitado
+            </div>
+
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">Renta de Equipo</span>
+              <h3 class="text-xl font-bold text-white mt-3 mb-2">Kit Audiovisual Pro</h3>
+              <p class="text-slate-300 text-xs sm:text-sm mb-6">
+                Equipamiento completo de proyección, microfonía inalámbrica e iluminación.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-purple-500/30">
+                <span class="text-3xl font-extrabold text-white">$350 USD</span>
+                <span class="text-slate-300 text-sm"> / día</span>
+              </div>
+
+              <ul class="text-xs sm:text-sm text-slate-200 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✔</span> 2 Pantallas 4K 65" con soportes móviles</li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✔</span> 4 Micrófonos inalámbricos de solapa/mano</li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✔</span> Consola mezcladora digital + cableado</li>
+                <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">✔</span> Técnico operador en sitio por 6 horas</li>
+              </ul>
+            </div>
+
+            <button onclick="selectPackage('Kit Audiovisual Pro ($350 USD)')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] text-center">
+              Solicitar Cotización
+            </button>
+          </div>
+
+          <!-- Plan 3 -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-700">
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded bg-slate-800 text-slate-300">Empresarial</span>
+              <h3 class="text-xl font-bold text-white mt-3 mb-2">Producción Integral</h3>
+              <p class="text-slate-400 text-xs sm:text-sm mb-6">
+                Cobertura técnica integral para congresos, convenciones o lanzamientos de marca.
+              </p>
+
+              <div class="mb-6 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+                <span class="text-3xl font-extrabold text-white">$750 USD</span>
+                <span class="text-slate-400 text-sm"> / evento</span>
+              </div>
+
+              <ul class="text-xs sm:text-sm text-slate-300 space-y-3 mb-8">
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Transmisión streaming multi-cámara HD</li>
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Escenografía e iluminación ambiental LED</li>
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Grabación y entrega de máster editado</li>
+                <li class="flex items-center gap-2.5"><span class="text-purple-400 font-bold">✔</span> Equipo de 3 ingenieros audiovisuales</li>
+              </ul>
+            </div>
+
+            <button onclick="selectPackage('Producción Integral ($750 USD)')" class="w-full py-3 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm transition-all text-center">
+              Solicitar Cotización
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= NOVEDADES / NOTICIAS SECTION ================= -->
+    <section id="noticias" class="py-16 lg:py-24 border-t border-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+          <div>
+            <span class="text-purple-400 font-semibold text-xs tracking-wider uppercase">Blog &amp; Comunicados</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Novedades y Artículos Recientes</h2>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md">
+            Mantente al día con nuestras últimas adquisiciones de equipo y mejores prácticas de la industria.
+          </p>
+        </div>
+
+        <!-- 3 Blog Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Article 1 -->
+          <article class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-purple-500/40 transition-all">
+            <div>
+              <div class="aspect-video overflow-hidden bg-slate-950">
+                <img 
+                  src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" 
+                  alt="Tecnología para eventos" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-[11px] text-purple-400 font-semibold mb-2">
+                  <span>TENDENCIAS</span>
+                  <span>•</span>
+                  <span class="text-slate-500 font-normal">02 Sep 2026</span>
+                </div>
+                <h3 class="font-bold text-white text-lg group-hover:text-purple-300 transition-colors">
+                  Tendencias tecnológicas para eventos corporativos en 2026
+                </h3>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed line-clamp-3">
+                  Descubre cómo el streaming híbrido y las pantallas modulares LED de ultra baja latencia están transformando las convenciones empresariales.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0">
+              <span class="text-xs font-semibold text-purple-400 group-hover:translate-x-1 inline-flex items-center gap-1 transition-transform">
+                Leer artículo completo →
+              </span>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-purple-500/40 transition-all">
+            <div>
+              <div class="aspect-video overflow-hidden bg-slate-950">
+                <img 
+                  src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80" 
+                  alt="Microfonía profesional" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-[11px] text-purple-400 font-semibold mb-2">
+                  <span>EQUIPAMIENTO</span>
+                  <span>•</span>
+                  <span class="text-slate-500 font-normal">28 Ago 2026</span>
+                </div>
+                <h3 class="font-bold text-white text-lg group-hover:text-purple-300 transition-colors">
+                  Incorporamos nueva flota de microfonía digital sin interferencias
+                </h3>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed line-clamp-3">
+                  Garantiza una nitidez acústica total en salas de conferencias con los nuevos transmisores de frecuencia ágil integrados a nuestro inventario de renta.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0">
+              <span class="text-xs font-semibold text-purple-400 group-hover:translate-x-1 inline-flex items-center gap-1 transition-transform">
+                Leer artículo completo →
+              </span>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-purple-500/40 transition-all">
+            <div>
+              <div class="aspect-video overflow-hidden bg-slate-950">
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" 
+                  alt="Casos de éxito" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-[11px] text-purple-400 font-semibold mb-2">
+                  <span>CASOS DE ÉXITO</span>
+                  <span>•</span>
+                  <span class="text-slate-500 font-normal">15 Ago 2026</span>
+                </div>
+                <h3 class="font-bold text-white text-lg group-hover:text-purple-300 transition-colors">
+                  Caso de éxito: Cumbre Anual de Innovación y Finanzas
+                </h3>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed line-clamp-3">
+                  Brindamos cobertura técnica simultánea a más de 800 asistentes presenciales y 2,500 conectados en línea con 0% de interrupciones.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0">
+              <span class="text-xs font-semibold text-purple-400 group-hover:translate-x-1 inline-flex items-center gap-1 transition-transform">
+                Leer artículo completo →
+              </span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CONTACT FORM SECTION ================= -->
+    <section id="contacto" class="py-16 lg:py-24 border-t border-slate-900 bg-slate-950/70">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-10">
+          <span class="text-purple-400 font-semibold text-xs tracking-wider uppercase">Atención Inmediata</span>
+          <h2 class="text-3xl font-bold text-white mt-1">Ponte en Contacto con Nosotros</h2>
+          <p class="text-slate-400 text-sm mt-2">
+            Llena el siguiente formulario y un ejecutivo técnico se comunicará en menos de 30 minutos.
+          </p>
+        </div>
+
+        <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
+          
+          <form id="form-site-contact" class="space-y-4">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block text-xs font-semibold text-slate-300 mb-1.5">Nombre Completo *</label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  required 
+                  placeholder="Ej: Roberto Garza" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                >
+              </div>
+
+              <div>
+                <label for="contact-email" class="block text-xs font-semibold text-slate-300 mb-1.5">Correo Electrónico *</label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  required 
+                  placeholder="rgarza@empresa.com" 
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-service" class="block text-xs font-semibold text-slate-300 mb-1.5">Servicio o Paquete de Interés</label>
+              <select 
+                id="contact-service" 
+                class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-purple-500 transition-colors"
+              >
+                <option value="Kit Audiovisual Pro ($350 USD)">Kit Audiovisual Pro ($350 USD)</option>
+                <option value="Consultoría & Diagnóstico ($150 USD)">Consultoría &amp; Diagnóstico ($150 USD)</option>
+                <option value="Producción Integral ($750 USD)">Producción Integral ($750 USD)</option>
+                <option value="Cotización a la medida">Cotización a la medida</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-semibold text-slate-300 mb-1.5">Detalles del Evento o Mensaje *</label>
+              <textarea 
+                id="contact-message" 
+                rows="4" 
+                required 
+                placeholder="Indica fechas estimadas, lugar y requerimientos especiales..." 
+                class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500 transition-colors"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-600/30 transition-all active:scale-[0.99] flex items-center justify-center gap-2"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+              Enviar Solicitud de Cotización
+            </button>
+          </form>
+
+          <!-- Feedback message -->
+          <div id="contact-success-msg" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold text-center">
+            ✔ ¡Mensaje recibido con éxito! Hemos enviado una copia de confirmación a tu correo.
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= PRO ACTIVATION MODAL ================= -->
+  <div id="modal-pro" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-purple-500/40 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+      
+      <!-- Close Button (X) -->
+      <button id="btn-close-pro-modal" aria-label="Cerrar modal" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Modal Content -->
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 text-white mx-auto flex items-center justify-center mb-3 shadow-lg shadow-purple-500/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+
+        <h3 class="text-2xl font-extrabold text-white">Activa FORGE Site/CMS Pro</h3>
+        <p id="pro-modal-subtitle" class="text-slate-400 text-xs sm:text-sm mt-1">Edita contenidos sin código, publica noticias y conecta tu propio dominio .com.</p>
+
+        <!-- Pricing Badge -->
+        <div class="mt-4 p-3.5 bg-slate-950/70 rounded-xl border border-purple-500/20 text-center">
+          <span class="text-2xl font-extrabold text-white">$19 USD<span class="text-sm font-normal text-slate-400">/mes</span></span>
+          <span class="text-xs text-slate-500 mx-2">o</span>
+          <span class="text-lg font-bold text-purple-300">$350 MXN<span class="text-xs font-normal text-slate-400">/mes</span></span>
+        </div>
+
+        <!-- Benefits List -->
+        <div class="mt-5 text-left space-y-2.5 bg-slate-950/40 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm">
+          <div class="flex items-center gap-2.5 text-slate-200">
+            <span class="text-purple-400 font-bold">✔</span>
+            <span><strong>Panel CMS Administrable:</strong> Modifica textos, paquetes y fotos sin programar.</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-slate-200">
+            <span class="text-purple-400 font-bold">✔</span>
+            <span><strong>Blog &amp; Noticias Ilimitadas:</strong> Publicaciones con imágenes y SEO.</span>
+          </div>
+          <div class="flex items-center gap-2.5 text-slate-200">
+            <span class="text-purple-400 font-bold">✔</span>
+            <span><strong>Dominio Propio &amp; SSL:</strong> Conexión inmediata a tu www.tuempresa.com.</span>
+          </div>
+        </div>
+
+        <!-- Activation Form -->
+        <form id="form-activate-pro" class="mt-6 space-y-3.5">
+          <div class="text-left">
+            <label for="pro-email" class="block text-xs font-medium text-slate-300 mb-1">
+              Correo electrónico del administrador
+            </label>
+            <input 
+              type="email" 
+              id="pro-email" 
+              required 
+              placeholder="admin@tuempresa.com" 
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+            >
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-purple-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          >
+            Iniciar Prueba / Activar
+          </button>
+        </form>
+
+        <p class="text-[11px] text-slate-500 mt-3">Sin contratos forzosos. Cancela en cualquier momento.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-white font-bold text-sm">
+            N
+          </div>
+          <div>
+            <span class="font-bold text-white text-base">Nova Solutions</span>
+            <p class="text-xs text-slate-500">Sitio de Demostración FORGE Site Express</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+          <a href="../../index.html" class="hover:text-white transition-colors">Hub Principal</a>
+          <a href="../../productos/cms.html" class="hover:text-white transition-colors">Detalles del Módulo</a>
+          <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+          <a href="#noticias" class="hover:text-white transition-colors">Noticias</a>
+          <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-900 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 Nova Solutions. Desarrollado con arquitectura FORGEPRIME.</p>
+        <p>Vanilla JS &amp; Netlify Functions.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const modalPro = document.getElementById('modal-pro');
+    const btnUnlockProHeader = document.getElementById('btn-unlock-pro-header');
+    const btnCloseProModal = document.getElementById('btn-close-pro-modal');
+    const formActivatePro = document.getElementById('form-activate-pro');
+    const proEmailInput = document.getElementById('pro-email');
+    const proModalSubtitle = document.getElementById('pro-modal-subtitle');
+
+    const demoBanner = document.getElementById('demo-banner');
+    const bannerDot = document.getElementById('banner-dot');
+    const bannerText = document.getElementById('banner-text');
+
+    const formSiteContact = document.getElementById('form-site-contact');
+    const contactSuccessMsg = document.getElementById('contact-success-msg');
+    const contactServiceSelect = document.getElementById('contact-service');
+
+    // Modal Pro
+    function openProModal(featureName) {
+      if (featureName) {
+        proModalSubtitle.textContent = `La función "${featureName}" requiere suscripción a FORGE Site/CMS Pro.`;
+      } else {
+        proModalSubtitle.textContent = 'Edita contenidos sin código, publica noticias y conecta tu propio dominio .com.';
+      }
+      modalPro.classList.remove('hidden');
+      modalPro.classList.add('flex');
+      proEmailInput.focus();
+    }
+
+    function closeProModal() {
+      modalPro.classList.add('hidden');
+      modalPro.classList.remove('flex');
+    }
+
+    btnUnlockProHeader.addEventListener('click', () => openProModal());
+    btnCloseProModal.addEventListener('click', closeProModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalPro) closeProModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeProModal();
+    });
+
+    // Simular selección de paquete en formulario
+    function selectPackage(packageName) {
+      contactServiceSelect.value = packageName;
+      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('contact-name').focus();
+    }
+
+    // Manejo de envío de formulario de contacto
+    formSiteContact.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const service = contactServiceSelect.value;
+
+      contactSuccessMsg.classList.remove('hidden');
+      contactSuccessMsg.textContent = `✔ ¡Gracias ${name}! Tu solicitud para "${service}" ha sido registrada (Simulación de Lead en Supabase).`;
+
+      formSiteContact.reset();
+      contactServiceSelect.value = service;
+    });
+
+    // Simulación de Activación Pro
+    formActivatePro.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = proEmailInput.value.trim();
+      if (!email) return;
+
+      closeProModal();
+
+      // Actualizar Banner
+      demoBanner.className = 'bg-emerald-500/10 border-b border-emerald-500/20 px-4 py-2 text-center text-xs font-semibold text-emerald-400 transition-all duration-300 flex items-center justify-center gap-2';
+      bannerDot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+      bannerText.textContent = `VERSIÓN PRO ACTIVADA (Demo) — Panel CMS habilitado para: ${email}`;
+
+      // Actualizar Botón Header
+      btnUnlockProHeader.innerHTML = `
+        <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span>Plan Pro Activo</span>
+      `;
+      btnUnlockProHeader.className = 'inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-semibold cursor-default';
+      btnUnlockProHeader.onclick = () => alert(`Tu sitio web y panel CMS están activos en modo Pro con ${email}.`);
+
+      alert(`¡Activación exitosa!\n\nSe ha activado FORGE Site/CMS Pro para: ${email}.\nEditor visual y base de datos Supabase habilitados.`);
+    });
+  </script>
+
+</body>
+</html>
