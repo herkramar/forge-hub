@@ -9,142 +9,186 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
 
-  <!-- Header del Panel -->
-  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-30 px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-3">
-      <div class="bg-gradient-to-tr from-amber-500 to-rose-500 w-10 h-10 rounded-xl flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">⚡</div>
-      <div>
-        <div class="flex items-center space-x-2">
-          <span class="font-extrabold text-xl text-white tracking-tight">FORGE</span>
-          <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold uppercase px-2 py-0.5 rounded-full">SuperAdmin God-Mode</span>
+  <!-- ==================== PANTALLA DE LOGIN ==================== -->
+  <div id="loginScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-8 shadow-2xl relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+      
+      <div class="text-center mb-6">
+        <div class="inline-flex bg-gradient-to-tr from-amber-500 to-rose-500 w-12 h-12 rounded-xl items-center justify-center font-black text-slate-950 text-2xl shadow-lg shadow-amber-500/20 mb-3">⚡</div>
+        <h1 class="text-2xl font-extrabold text-white tracking-tight">FORGE SuperAdmin</h1>
+        <p class="text-xs text-slate-400 mt-1">Ingresa con tu cuenta asignada para acceder al God-Mode</p>
+      </div>
+
+      <!-- Alerta de Error -->
+      <div id="loginError" class="hidden bg-rose-950/80 border border-rose-800 text-rose-300 text-xs p-3 rounded-lg mb-4 text-center"></div>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico</label>
+          <input type="email" id="loginEmail" required placeholder="admin@forge.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
         </div>
-        <p class="text-xs text-slate-400">Control Multi-tenant, Módulos y Roles Globales</p>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Contraseña</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500 transition">
+        </div>
+
+        <button type="submit" id="loginBtn" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-2.5 rounded-lg text-sm shadow-lg shadow-amber-500/10 transition">
+          Iniciar Sesión en God-Mode
+        </button>
+      </form>
+
+      <div class="mt-6 border-t border-slate-800/80 pt-4 text-center">
+        <a href="./index.html" class="text-xs text-slate-500 hover:text-slate-300 transition">← Volver al Hub Principal</a>
       </div>
     </div>
+  </div>
 
-    <div class="flex items-center space-x-4">
-      <a href="./index.html" class="text-xs text-slate-400 hover:text-white transition">← Ir al Hub Principal</a>
-      <span id="superadminBadge" class="text-xs bg-slate-800 border border-slate-700 text-slate-300 px-3 py-1 rounded-full">Validando Credenciales...</span>
-    </div>
-  </header>
-
-  <!-- Layout Principal -->
-  <main class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-    <!-- Columna Izquierda: Crear / Editar Organización -->
-    <section class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
-      <div>
-        <h2 class="text-lg font-bold text-white mb-1 flex items-center space-x-2">
-          <span>🏢</span> <span>Nueva Organización (Tenant)</span>
-        </h2>
-        <p class="text-xs text-slate-400 mb-5">Da de alta a un cliente pagador y asigna su vertical inicial.</p>
-
-        <form id="createOrgForm" class="space-y-4">
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre Comercial de la Empresa</label>
-            <input type="text" id="orgNombre" placeholder="Ej. Hotel & Tours Cancún" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+  <!-- ==================== PANEL GOD-MODE (PROTEGIDO) ==================== -->
+  <div id="adminPanel" class="hidden flex-1 flex flex-col">
+    <!-- Header del Panel -->
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-30 px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="bg-gradient-to-tr from-amber-500 to-rose-500 w-10 h-10 rounded-xl flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">⚡</div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold text-xl text-white tracking-tight">FORGE</span>
+            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold uppercase px-2 py-0.5 rounded-full">SuperAdmin God-Mode</span>
           </div>
+          <p class="text-xs text-slate-400">Control Multi-tenant, Módulos y Roles Globales</p>
+        </div>
+      </div>
 
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Tipo de Industria / Vertical</label>
-            <select id="orgIndustria" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
-              <option value="retail">Retail / Tiendas de Conveniencia</option>
-              <option value="restaurante">Restaurantes / Bares / Comida</option>
-              <option value="turismo">Turismo / Paquetes de Viaje / Excursiones</option>
-              <option value="servicios">Servicios Generales & Rentas</option>
-            </select>
-          </div>
+      <div class="flex items-center space-x-4">
+        <span id="userEmailBadge" class="text-xs text-slate-400"></span>
+        <button id="logoutBtn" class="bg-slate-800 hover:bg-rose-900/40 hover:text-rose-300 text-slate-300 text-xs px-3 py-1.5 rounded-lg border border-slate-700 transition">
+          Cerrar Sesión
+        </button>
+      </div>
+    </header>
 
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Módulos Iniciales a Desplegar</label>
-            <div class="space-y-2 mt-2 bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-xs text-slate-300">
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input type="checkbox" value="pos_express" checked class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
-                <span>POS (Punto de Venta Mostrador/Mesas)</span>
-              </label>
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input type="checkbox" value="ecommerce_express" checked class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
-                <span>E-commerce (Catálogo / Paquetes / Stripe)</span>
-              </label>
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input type="checkbox" value="crm_express" class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
-                <span>CRM Express (Leads & Reservaciones)</span>
-              </label>
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input type="checkbox" value="cms_express" class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
-                <span>Site / CMS Express (Landing Page)</span>
-              </label>
+    <!-- Layout Principal -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Columna Izquierda: Crear / Editar Organización -->
+      <section class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-white mb-1 flex items-center space-x-2">
+            <span>🏢</span> <span>Nueva Organización (Tenant)</span>
+          </h2>
+          <p class="text-xs text-slate-400 mb-5">Da de alta a un cliente pagador y asigna su vertical inicial.</p>
+
+          <form id="createOrgForm" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre Comercial de la Empresa</label>
+              <input type="text" id="orgNombre" placeholder="Ej. Hotel & Tours Cancún" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
             </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Tipo de Industria / Vertical</label>
+              <select id="orgIndustria" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                <option value="retail">Retail / Tiendas de Conveniencia</option>
+                <option value="restaurante">Restaurantes / Bares / Comida</option>
+                <option value="turismo">Turismo / Paquetes de Viaje / Excursiones</option>
+                <option value="servicios">Servicios Generales & Rentas</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Módulos Iniciales a Desplegar</label>
+              <div class="space-y-2 mt-2 bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-xs text-slate-300">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" value="pos_express" checked class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
+                  <span>POS (Punto de Venta Mostrador/Mesas)</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" value="ecommerce_express" checked class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
+                  <span>E-commerce (Catálogo / Paquetes / Stripe)</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" value="crm_express" class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
+                  <span>CRM Express (Leads & Reservaciones)</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="checkbox" value="cms_express" class="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0">
+                  <span>Site / CMS Express (Landing Page)</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-2.5 rounded-lg text-sm shadow-lg shadow-amber-500/10 transition">
+              Dar de Alta Organización
+            </button>
+          </form>
+        </div>
+
+        <div class="mt-6 border-t border-slate-800/80 pt-4 text-[11px] text-slate-500">
+          💡 <strong class="text-slate-400">Nota del God-Mode:</strong> Datos aislados vía políticas RLS en Supabase.
+        </div>
+      </section>
+
+      <!-- Columna Central y Derecha: Listado de Clientes y Gestión de Módulos -->
+      <section class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+                <span>👥</span> <span>Organizaciones Registradas (Tenants)</span>
+              </h2>
+              <p class="text-xs text-slate-400">Activa/desactiva capacidades en tiempo real según la suscripción.</p>
+            </div>
+            <button id="refreshBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg border border-slate-700 transition">
+              🔄 Actualizar Datos
+            </button>
           </div>
 
-          <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-2.5 rounded-lg text-sm shadow-lg shadow-amber-500/10 transition">
-            Dar de Alta Organización
-          </button>
-        </form>
-      </div>
-
-      <div class="mt-6 border-t border-slate-800/80 pt-4 text-[11px] text-slate-500">
-        💡 <strong class="text-slate-400">Nota del God-Mode:</strong> Todas las altas se vinculan con una `organizacion_id` única y sus datos quedan aislados vía políticas RLS en Supabase.
-      </div>
-    </section>
-
-    <!-- Columna Central y Derecha: Listado de Clientes y Gestión de Módulos -->
-    <section class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
-      <div>
-        <div class="flex justify-between items-center mb-4">
-          <div>
-            <h2 class="text-lg font-bold text-white flex items-center space-x-2">
-              <span>👥</span> <span>Organizaciones Registradas (Tenants)</span>
-            </h2>
-            <p class="text-xs text-slate-400">Activa/desactiva capacidades en tiempo real según la suscripción.</p>
+          <!-- Tabla de Clientes -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-slate-950 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-800">
+                <tr>
+                  <th class="p-3">Organización</th>
+                  <th class="p-3">Vertical</th>
+                  <th class="p-3">Módulos Activos</th>
+                </tr>
+              </thead>
+              <tbody id="orgsTableBody" class="divide-y divide-slate-800/60">
+                <tr>
+                  <td colspan="3" class="p-8 text-center text-slate-500">Cargando organizaciones desde Supabase...</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <button id="refreshBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg border border-slate-700 transition">
-            🔄 Actualizar Datos
-          </button>
         </div>
 
-        <!-- Tabla de Clientes -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-slate-950 text-slate-400 font-semibold uppercase tracking-wider border-b border-slate-800">
-              <tr>
-                <th class="p-3">Organización</th>
-                <th class="p-3">Vertical</th>
-                <th class="p-3">Módulos Activos</th>
-                <th class="p-3 text-right">Acciones God-Mode</th>
-              </tr>
-            </thead>
-            <tbody id="orgsTableBody" class="divide-y divide-slate-800/60">
-              <!-- Carga dinámica -->
-              <tr>
-                <td colspan="4" class="p-8 text-center text-slate-500">
-                  Cargando organizaciones desde Supabase...
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Logs de Auditoría SuperAdmin -->
+        <div class="mt-6 border-t border-slate-800 pt-4">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Registro de Auditoría de Permisos (God Logs)</h3>
+          <div id="godConsole" class="bg-slate-950 border border-slate-800/80 rounded-lg p-3 font-mono text-[11px] text-emerald-400 h-28 overflow-y-auto space-y-1">
+            <div>[SYSTEM] Esperando autenticación...</div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Logs de Auditoría SuperAdmin -->
-      <div class="mt-6 border-t border-slate-800 pt-4">
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Registro de Auditoría de Permisos (God Logs)</h3>
-        <div id="godConsole" class="bg-slate-950 border border-slate-800/80 rounded-lg p-3 font-mono text-[11px] text-emerald-400 h-28 overflow-y-auto space-y-1">
-          <div>[SYSTEM] Inicializando Panel SuperAdmin God-Mode...</div>
-        </div>
-      </div>
-    </section>
+    </main>
+  </div>
 
-  </main>
-
-  <!-- Script Principal de Integración -->
+  <!-- Script Principal de Autenticación y Control -->
   <script type="module">
     import { getSupabase } from './js/supabaseClient.js';
+
+    const loginScreen = document.getElementById('loginScreen');
+    const adminPanel = document.getElementById('adminPanel');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userEmailBadge = document.getElementById('userEmailBadge');
 
     const orgsTableBody = document.getElementById('orgsTableBody');
     const createOrgForm = document.getElementById('createOrgForm');
     const godConsole = document.getElementById('godConsole');
-    const superadminBadge = document.getElementById('superadminBadge');
 
     function logGod(mensaje) {
       const hora = new Date().toLocaleTimeString();
@@ -152,34 +196,104 @@
       godConsole.scrollTop = godConsole.scrollHeight;
     }
 
-    async function cargarOrganizaciones() {
+    // Comprobar estado de sesión al cargar
+    document.addEventListener('DOMContentLoaded', async () => {
       const db = getSupabase();
-      if (!db) {
-        logGod("❌ Error: No se pudo conectar a la cliente de Supabase.");
+      if (!db) return;
+
+      const { data: { session } } = await db.auth.getSession();
+      
+      if (session) {
+        await checkUserAndInit(session.user);
+      } else {
+        showLogin();
+      }
+    });
+
+    // Evento Formulario de Login
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.classList.add('hidden');
+      loginBtn.innerText = "Verificando...";
+      loginBtn.disabled = true;
+
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const db = getSupabase();
+      const { data, error } = await db.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        loginError.innerText = `Error: ${error.message}`;
+        loginError.classList.remove('hidden');
+        loginBtn.innerText = "Iniciar Sesión en God-Mode";
+        loginBtn.disabled = false;
         return;
       }
 
+      await checkUserAndInit(data.user);
+    });
+
+    // Verificar Rol y Desbloquear Panel
+    async function checkUserAndInit(user) {
+      const db = getSupabase();
+
+      // Consultar rol en la tabla usuarios
+      const { data: perfil, error } = await db
+        .from('usuarios')
+        .select('rol')
+        .eq('id', user.id)
+        .single();
+
+      if (error || !perfil || perfil.rol !== 'superadmin') {
+        loginError.innerText = "Acceso Denegado: Tu cuenta no tiene permisos de SuperAdmin (God-Mode).";
+        loginError.classList.remove('hidden');
+        await db.auth.signOut();
+        showLogin();
+        loginBtn.innerText = "Iniciar Sesión en God-Mode";
+        loginBtn.disabled = false;
+        return;
+      }
+
+      // Éxito: Mostrar Panel
+      loginScreen.classList.add('hidden');
+      adminPanel.classList.remove('hidden');
+      userEmailBadge.innerText = `👤 ${user.email} (superadmin)`;
+      logGod(`🔑 Sesión iniciada como SuperAdmin: ${user.email}`);
+
+      cargarOrganizaciones();
+    }
+
+    function showLogin() {
+      loginScreen.classList.remove('hidden');
+      adminPanel.classList.add('hidden');
+    }
+
+    // Cerrar Sesión
+    logoutBtn.addEventListener('click', async () => {
+      const db = getSupabase();
+      await db.auth.signOut();
+      window.location.reload();
+    });
+
+    // Cargar Organizaciones
+    async function cargarOrganizaciones() {
+      const db = getSupabase();
       logGod("🔍 Consultando organizaciones en la base de datos...");
-      
+
       const { data: orgs, error } = await db
         .from('organizaciones')
         .select('*, modulos_organizaciones(*)');
 
       if (error) {
-        logGod(`❌ Error RLS / Permisos: ${error.message}`);
-        superadminBadge.innerText = "🔴 RLS Restringido";
-        superadminBadge.className = "text-xs bg-rose-950 border border-rose-800 text-rose-300 px-3 py-1 rounded-full";
-        renderFallbackOrgs();
+        logGod(`❌ Error RLS / Lectura: ${error.message}`);
         return;
       }
-
-      superadminBadge.innerText = "🟢 Sesión SuperAdmin Activa";
-      superadminBadge.className = "text-xs bg-emerald-950 border border-emerald-800 text-emerald-300 px-3 py-1 rounded-full";
 
       if (!orgs || orgs.length === 0) {
         orgsTableBody.innerHTML = `
           <tr>
-            <td colspan="4" class="p-8 text-center text-slate-500">
+            <td colspan="3" class="p-8 text-center text-slate-500">
               No hay organizaciones registradas. Crea la primera desde el formulario izquierdo.
             </td>
           </tr>
@@ -189,10 +303,7 @@
       }
 
       logGod(`✅ ${orgs.length} organizaciones cargadas exitosamente.`);
-      renderOrgsTable(orgs);
-    }
-
-    function renderOrgsTable(orgs) {
+      
       orgsTableBody.innerHTML = orgs.map(o => {
         const modulos = o.modulos_organizaciones || [];
         const listaModulos = modulos.map(m => `
@@ -213,39 +324,20 @@
               </span>
             </td>
             <td class="p-3 flex flex-wrap gap-1">${listaModulos}</td>
-            <td class="p-3 text-right space-x-2">
-              <button onclick="toggleModulo('${o.id}', 'pos_express')" class="text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded border border-slate-700">
-                ⚙️ Ajustar Módulos
-              </button>
-            </td>
           </tr>
         `;
       }).join('');
     }
 
-    function renderFallbackOrgs() {
-      orgsTableBody.innerHTML = `
-        <tr class="hover:bg-slate-800/30">
-          <td class="p-3 font-semibold text-white">Demo Empresa Demo S.A. <div class="text-[10px] text-slate-500">ID: demo-tenant-001</div></td>
-          <td class="p-3"><span class="uppercase text-[10px] bg-slate-800 text-amber-400 font-bold px-2 py-0.5 rounded">Turismo</span></td>
-          <td class="p-3"><span class="bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded text-[10px]">pos_express</span> <span class="bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded text-[10px]">ecommerce_viajes</span></td>
-          <td class="p-3 text-right"><span class="text-amber-400 text-[10px]">Modo Simulación</span></td>
-        </tr>
-      `;
-    }
-
-    // Evento de Alta de Organización
+    // Guardar Organización
     createOrgForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const db = getSupabase();
       const nombre = document.getElementById('orgNombre').value;
       const tipo_industria = document.getElementById('orgIndustria').value;
 
-      logGod(`⏳ Creando organización: "${nombre}" (${tipo_industria})...`);
+      logGod(`⏳ Creando organización: "${nombre}"...`);
 
-      if (!db) return;
-
-      // 1. Insertar Organización
       const { data: newOrg, error } = await db
         .from('organizaciones')
         .insert([{ nombre, tipo_industria }])
@@ -253,14 +345,11 @@
         .single();
 
       if (error) {
-        logGod(`❌ Error al crear organización: ${error.message}`);
+        logGod(`❌ Error: ${error.message}`);
         alert(`Error: ${error.message}`);
         return;
       }
 
-      logGod(`🎉 Organización creada con ID: ${newOrg.id}`);
-
-      // 2. Insertar Módulos seleccionados
       const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
       const modulosToInsert = Array.from(checkboxes).map(cb => ({
         organizacion_id: newOrg.id,
@@ -269,20 +358,15 @@
       }));
 
       if (modulosToInsert.length > 0) {
-        const { error: modError } = await db.from('modulos_organizaciones').insert(modulosToInsert);
-        if (modError) {
-          logGod(`⚠️ Advertencia al vincular módulos: ${modError.message}`);
-        } else {
-          logGod(`✅ ${modulosToInsert.length} Módulos vinculados correctamente.`);
-        }
+        await db.from('modulos_organizaciones').insert(modulosToInsert);
       }
 
+      logGod(`🎉 Organización "${nombre}" registrada con éxito.`);
       createOrgForm.reset();
       cargarOrganizaciones();
     });
 
     document.getElementById('refreshBtn').addEventListener('click', cargarOrganizaciones);
-    document.addEventListener('DOMContentLoaded', cargarOrganizaciones);
   </script>
 </body>
 </html>
